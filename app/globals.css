@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+@theme {
+  /* Type */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-hand: var(--font-caveat), "Segoe Script", cursive;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, monospace;
+
+  /* Cairo Sunset palette */
+  --color-cream: #FBF7F0;
+  --color-blush: #FFD6C4;
+  --color-ochre: #F5B841;
+  --color-plum: #2B1B3D;
+  --color-ink: #0A0A0A;
+  --color-acid: #D4FF3A;
+  --color-bg: #FBF7F0;
+  --color-surface: #FFEDDF;
+  --color-fg: #2B1B3D;
+  --color-fg-muted: #4D3B5E;       /* AAA: 7.7:1 on cream (was #6B5A7A → 5.2:1, failed) */
+  --color-fg-subtle: #6F5D80;      /* AAA large: 4.6:1 on cream (was #A89BB2 → 2.3:1, failed) */
+  --color-border: rgba(43, 27, 61, 0.18);
+
+  /* Radius */
+  --radius-card: 28px;
+  --radius-pill: 999px;
+
+  /* Easing */
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+/* Dark mood — "Cairo after dark": deep violet-ink + warm cream + acid-lime pop */
+.dark {
+  color-scheme: dark;
+  --color-bg: #0D0B14;          /* near-black with a 3% violet undertone — warmer than pure black */
+  --color-surface: #16131F;     /* elevated card surface */
+  --color-fg: #F5F1EA;                          /* warm cream — keeps the Cairo warmth */
+  --color-fg-muted: rgba(245, 241, 234, 0.85);  /* AAA: ~12:1 on dark ink (was 0.62 → 6.7:1, failed body) */
+  --color-fg-subtle: rgba(245, 241, 234, 0.6);  /* AAA large: ~7.5:1 (was 0.38 → 3.4:1, failed AA) */
+  --color-border: rgba(245, 241, 234, 0.16);
+}
+
+/* Grain plays differently against dark — switch blend for readability */
+.dark.grain::before,
+.dark .grain::before {
+  opacity: 0.08;
+  mix-blend-mode: soft-light;
+}
+
+/* Force-light — for sections that always have a light bg regardless of theme */
+.force-light {
+  --color-fg: #2B1B3D;
+  --color-fg-muted: #4D3B5E;       /* AAA body 7.7:1 on cream */
+  --color-fg-subtle: #6F5D80;      /* AAA large 4.6:1 on cream */
+  --color-border: rgba(43, 27, 61, 0.18);
+  color: #2B1B3D;
+}
+
+/* In dark mode: disable the multiply blend that makes shapes invisible on dark bg */
+.dark .mix-blend-multiply {
+  mix-blend-mode: normal;
+}
+
+/* In dark mode: swap the "plum" Hero shape to cream so it stays visible on dark ink */
+.dark [data-invert-on-dark="true"] {
+  background-color: var(--color-fg) !important;
+}
+.dark [data-invert-on-dark="true"] > span {
+  color: var(--color-bg) !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-acid);
+  color: var(--color-plum);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 500;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Film grain overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+/* Infinite soft pulse */
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.04); opacity: 0.85; }
+}
+.pulse-soft { animation: pulse-soft 2.4s ease-in-out infinite; }
+
+/* Paper texture card */
+.paper {
+  background: var(--color-cream);
+  box-shadow:
+    0 1px 0 rgba(43, 27, 61, 0.04),
+    0 20px 40px -20px rgba(43, 27, 61, 0.2);
+}
+
+/* Sticker tilt */
+.sticker {
+  transform: rotate(var(--r, -3deg));
+  transition: transform 0.4s var(--ease-spring);
+}
+.sticker:hover { transform: rotate(0deg) scale(1.02); }
+
+/* Outline button */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: all 0.3s var(--ease-out-quart);
+}
+.btn-primary {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(43, 27, 61, 0.5);
+  opacity: 0.92;
+}
+.btn-ghost {
+  border: 1.5px solid var(--color-fg);
+  color: var(--color-fg);
+}
+.btn-ghost:hover {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
+.dark .btn-primary {
+  background: var(--color-acid);
+  color: #0D0B14;
+}
+.dark .btn-primary:hover {
+  box-shadow: 0 0 0 3px rgba(212, 255, 58, 0.25),
+              0 12px 28px -10px rgba(212, 255, 58, 0.4);
+}
+
+/* Underline link */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s var(--ease-out-quart);
+}
+.link-underline:hover {
+  background-size: 100% 1.5px;
+}
+
+/* No horizontal scroll bars visible on drag rails */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* AAA — visible focus indicators on every interactive element */
+:focus { outline: none; }
+:focus-visible {
+  outline: 3px solid var(--color-acid);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.dark :focus-visible {
+  outline-color: var(--color-acid);
+  box-shadow: 0 0 0 5px rgba(13, 11, 20, 0.6);
+}
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 4px;
+}
+
+/* AAA — honor user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+}
