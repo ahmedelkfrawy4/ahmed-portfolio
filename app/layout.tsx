@@ -72,6 +72,12 @@ export default function RootLayout({
           <Cursor />
           {children}
         </MotionProvider>
+        <Script
+          id="cf-web-analytics"
+          strategy="afterInteractive"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "fd9e3f4aff7c4350b5444775b18b7421"}'
+        />
       </body>
     </html>
   );
