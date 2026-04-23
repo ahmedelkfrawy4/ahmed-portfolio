@@ -1,16 +1,47 @@
 "use client";
 
+import Image from "next/image";
+
 export function PhoneMock({
   bg,
   fg,
   accent,
   label,
+  image,
 }: {
   bg: string;
   fg: string;
   accent: string;
   label?: string;
+  image?: string;
 }) {
+  if (image) {
+    return (
+      <div className="relative">
+        <div
+          className="relative w-full overflow-hidden rounded-[36px] border-[6px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)]"
+          style={{
+            borderColor: fg,
+            backgroundColor: bg,
+            aspectRatio: "1179 / 2556",
+          }}
+        >
+          <Image
+            src={image}
+            alt={label ?? "screen"}
+            fill
+            sizes="(min-width: 768px) 33vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+        {label && (
+          <span className="mono mt-3 block text-[var(--color-fg-subtle)] text-sm">
+            {label}
+          </span>
+        )}
+      </div>
+    );
+  }
   return (
     <div className="relative">
       <div
@@ -99,12 +130,43 @@ export function BrowserMock({
   fg,
   accent,
   label,
+  image,
+  aspect,
 }: {
   bg: string;
   fg: string;
   accent: string;
   label?: string;
+  image?: string;
+  aspect?: string;
 }) {
+  if (image) {
+    return (
+      <div className="relative">
+        <div
+          className="relative w-full overflow-hidden rounded-2xl border-[3px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)]"
+          style={{
+            borderColor: fg,
+            backgroundColor: bg,
+            aspectRatio: aspect ?? "1024 / 768",
+          }}
+        >
+          <Image
+            src={image}
+            alt={label ?? "screen"}
+            fill
+            sizes="(min-width: 768px) 66vw, 100vw"
+            className="object-cover object-top"
+          />
+        </div>
+        {label && (
+          <span className="mono mt-3 block text-[var(--color-fg-subtle)] text-sm">
+            {label}
+          </span>
+        )}
+      </div>
+    );
+  }
   return (
     <div className="relative">
       <div

@@ -1,8 +1,13 @@
-export type ProjectStatus = "live" | "internal" | "in-progress";
+export type ProjectStatus = "live" | "internal" | "in-progress" | "completed";
 
 export type ProjectLink = { label: string; href: string };
 
-export type ProjectMockup = { label: string; type: "phone" | "browser" };
+export type ProjectMockup = {
+  label: string;
+  type: "phone" | "browser";
+  image?: string;
+  aspect?: string;
+};
 
 export type Project = {
   slug: string;
@@ -20,7 +25,7 @@ export type Project = {
   process: string[];
   outcomes: string[];
   liveLinks?: ProjectLink[];
-  hero: { bg: string; fg: string; accent: string };
+  hero: { bg: string; fg: string; accent: string; image?: string; imageAspect?: string };
   mockups: ProjectMockup[];
 };
 
@@ -173,31 +178,93 @@ export const projects: Project[] = [
     slug: "baba-guide",
     n: "05",
     name: "Baba Guide",
-    client: "Freelance",
+    client: "Alvatan Tours — Freelance",
     sector: "Travel & Tourism",
-    year: "2026",
-    status: "in-progress",
-    services: ["UX Research", "Mobile App Design"],
-    tagline: "A travel & tourism app — designed from scratch.",
-    overview:
-      "Currently in design. Baba Guide is a freelance project — a travel & tourism mobile app being shaped through interviews, research, and iterative wireframes.",
-    problem:
-      "Travelers need a calm, locally-aware guide that doesn't feel like a directory. The challenge is building trust + utility in the same interface.",
-    solution:
-      "Designing the product from the ground up — research-first, persona-driven, mobile-first.",
-    process: [
-      "Field research with travelers in target regions",
-      "Persona mapping + competitive landscape",
-      "Information architecture (in progress)",
-      "Wireframes (in progress)",
-      "High-fidelity UI (next phase)",
+    year: "2023 — 2025",
+    status: "completed",
+    services: [
+      "UX Research",
+      "Mobile App Design",
+      "Admin Dashboard",
+      "Design System",
     ],
-    outcomes: ["In design", "Travel & tourism", "Mobile-first"],
-    hero: { bg: "#FFD6C4", fg: "#2B1B3D", accent: "#F5B841" },
+    tagline:
+      "Discover, plan and go — one travel companion for tours, restaurants, shopping, and rides.",
+    overview:
+      "Baba Guide is designed as a single travel companion that unifies the fragmented tourist journey. Users pick a language, country and city on first open, then browse tours, restaurants, shopping, rent-a-car, chauffeur services and subway tickets in one place. Each listing shows price, availability, reviews and offers. A full admin dashboard lets the Alvatan Tours team manage countries, cities, companies, tours, chauffeurs, subway routes and users. Delivered as a complete design system covering 60+ mobile screens and a 15-screen web admin.",
+    problem:
+      "Tourists in Turkey juggle a dozen disconnected apps to plan a single trip — one for tours, another for transport, a third for restaurants, another for shopping. Listings are scattered, prices are opaque, and reviews live on separate platforms. Operators like Alvatan Tours had no unified way to publish their inventory and manage it.",
+    solution:
+      "One mobile app covering discovery, booking and reviews across every sector. A paired admin dashboard gives operators a single source of truth for their catalog. The design system threads a warm ochre brand through every surface, with calm typography and large tap targets that hold up for stressed, on-the-go travelers.",
+    process: [
+      "Stakeholder workshops with Alvatan Tours to map every sector and role",
+      "Competitive audit of travel, transport and local-services apps in Turkey",
+      "Information architecture for the mobile app (60+ screens) and admin (15+ views)",
+      "Wireframes → high-fidelity UI in a single shared design system",
+      "Iterative reviews with the client through a shipped Figma prototype",
+      "Complete handoff — spec, tokens, components and screen-by-screen notes",
+    ],
+    outcomes: [
+      "60+ mobile screens",
+      "15+ admin views",
+      "Unified design system",
+      "Full design handoff",
+    ],
+    hero: {
+      bg: "#FFD6C4",
+      fg: "#2B1B3D",
+      accent: "#F5B841",
+      image: "/projects/baba-guide/desktop.png",
+      imageAspect: "4096 / 2913",
+    },
     mockups: [
-      { label: "Discover", type: "phone" },
-      { label: "Trip detail", type: "phone" },
-      { label: "Saved places", type: "phone" },
+      { label: "Splash", type: "phone", image: "/projects/baba-guide/splash.png" },
+      { label: "Welcome", type: "phone", image: "/projects/baba-guide/welcome.png" },
+      { label: "Home", type: "phone", image: "/projects/baba-guide/home.png" },
+      { label: "Search", type: "phone", image: "/projects/baba-guide/search.png" },
+      {
+        label: "Filters",
+        type: "phone",
+        image: "/projects/baba-guide/search-filters.png",
+      },
+      { label: "Map", type: "phone", image: "/projects/baba-guide/map.png" },
+      {
+        label: "Tour place",
+        type: "phone",
+        image: "/projects/baba-guide/tour-place.png",
+      },
+      {
+        label: "Restaurant",
+        type: "phone",
+        image: "/projects/baba-guide/restaurant.png",
+      },
+      { label: "Reviews", type: "phone", image: "/projects/baba-guide/reviews.png" },
+      { label: "Offers", type: "phone", image: "/projects/baba-guide/offers.png" },
+      { label: "Profile", type: "phone", image: "/projects/baba-guide/profile.png" },
+      {
+        label: "Admin — Admins",
+        type: "browser",
+        image: "/projects/baba-guide/admin-admins.png",
+        aspect: "1024 / 768",
+      },
+      {
+        label: "Admin — Users",
+        type: "browser",
+        image: "/projects/baba-guide/admin-users.png",
+        aspect: "1024 / 768",
+      },
+      {
+        label: "Admin — Cities",
+        type: "browser",
+        image: "/projects/baba-guide/admin-cities.png",
+        aspect: "1024 / 768",
+      },
+      {
+        label: "Admin — Tours",
+        type: "browser",
+        image: "/projects/baba-guide/admin-tour.png",
+        aspect: "1024 / 768",
+      },
     ],
   },
 ];

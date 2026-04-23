@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue } from "motion/react";
-import { ArrowUpRight, Lock, Clock, Radio } from "lucide-react";
+import { ArrowUpRight, Lock, Clock, Radio, CheckCircle2 } from "lucide-react";
 import { projects } from "@/lib/projects";
 import { PhoneMock, BrowserMock } from "@/components/Mockups";
 
@@ -20,6 +20,14 @@ function StatusPill({ status }: { status: typeof projects[number]["status"] }) {
       <span className="mono inline-flex items-center gap-1.5 rounded-full border border-[var(--color-fg)]/30 px-2.5 py-1 text-[var(--color-fg-muted)]">
         <Lock className="size-3" />
         internal
+      </span>
+    );
+  }
+  if (status === "completed") {
+    return (
+      <span className="mono inline-flex items-center gap-1.5 rounded-full border border-[var(--color-ochre)] bg-[var(--color-ochre)]/15 px-2.5 py-1 text-[var(--color-fg)]">
+        <CheckCircle2 className="size-3" />
+        completed
       </span>
     );
   }
