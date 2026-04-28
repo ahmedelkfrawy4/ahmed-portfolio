@@ -7,6 +7,14 @@ export type ProjectMockup = {
   type: "phone" | "browser";
   image?: string;
   aspect?: string;
+  moreCount?: number;
+};
+
+export type ProjectArtifact = {
+  label: string;
+  caption?: string;
+  image: string;
+  aspect?: string;
 };
 
 export type Project = {
@@ -27,48 +35,90 @@ export type Project = {
   liveLinks?: ProjectLink[];
   hero: { bg: string; fg: string; accent: string; image?: string; imageAspect?: string };
   mockups: ProjectMockup[];
+  artifacts?: ProjectArtifact[];
 };
 
 export const projects: Project[] = [
   {
-    slug: "mtn",
+    slug: "fittra-clinic",
     n: "01",
-    name: "MTN Platform Suite",
-    client: "MTN — Training & Self-Improvement",
-    sector: "Training · Fintech · Education",
+    name: "Fittra Clinic",
+    client: "Fittra Clinic — بيت الأنوثة",
+    sector: "Healthcare · Women's Wellness",
     year: "2024 — present",
     status: "live",
-    services: ["UI/UX Design", "Design System", "Research", "Mobile + Web"],
+    services: ["UI/UX Design", "Web Design", "Brand UI", "Arabic-first / RTL"],
     tagline:
-      "Six platforms, one design language — and a 30% sales lift to prove it.",
+      "A calm, women-first wellness brand — designed Arabic-first.",
     overview:
-      "MTN runs five public platforms (Fittra Clinic, Fittra Stream, Fittra Training, MTN Institute, MTN Payment) plus an internal payment tool. Each had its own audience — patients, learners, fitness fans, paying customers — and none of them felt like the same brand. My job: unify them, ship them, and make them sell.",
+      "Fittra Clinic is a women's wellness clinic that needed a digital presence as warm and trustworthy as the experience inside. The brief was Arabic-first by default, with a calm visual tone that turns first-time visitors into booked patients. Every surface — landing page, services, booking — had to feel like the same brand.",
     problem:
-      "Fragmented platforms with inconsistent flows. Users dropped off mid-onboarding because every product felt like a different company. The internal team had no shared design system to lean on.",
+      "Most clinic sites in the region read as either over-clinical or over-decorative. Patients struggle to find services, booking flows are buried, and the brand voice rarely matches the calm in-clinic experience.",
     solution:
-      "Built one unified design system from the ground up — typography, color, components, motion, the lot. Then redesigned each platform end-to-end against it: research → wireframes → prototypes → usability tests every sprint.",
+      "Designed an Arabic-first interface with generous spacing and warm brand colour. Put services and booking front-and-centre with a service architecture that scans fast. Threaded a consistent visual language from landing page to booking confirmation.",
     process: [
-      "Stakeholder interviews across each product team to map shared needs",
-      "Competitive audits per vertical (training, payment, learning, healthcare)",
-      "Design tokens + foundational components in Figma — shared library",
-      "Per-platform redesign sprints, each shipped with usability tests",
-      "Accessibility pass — color contrast, target sizes, motion preferences",
-      "Hand-off + maintenance docs for the engineering team",
+      "Stakeholder workshops with the Fittra clinic team to map tone and services",
+      "Audit of regional clinic sites and women's wellness brands",
+      "Information architecture for services, booking and content",
+      "Wireframes → high-fidelity UI built Arabic-first / RTL",
+      "Iterative reviews with the clinic team",
+      "Hand-off with components, tokens and content guidelines",
     ],
-    outcomes: ["+30% sales lift", "94% user satisfaction", "6 products live"],
+    outcomes: ["Live in Arabic", "Warm clinic brand", "Clear booking flow"],
     liveLinks: [
-      { label: "MTN Payment", href: "https://www.mtnpayment.com/en" },
-      { label: "MTN Institute", href: "https://mtninstitute.net/ar" },
-      { label: "Fittra Training", href: "https://www.fittratraining.com/ar" },
-      { label: "Fittra Stream", href: "https://fittrastream.com/en" },
-      { label: "Fittra Clinic", href: "https://fittraclinic.com/ar" },
+      { label: "fittraclinic.com", href: "https://fittraclinic.com/ar" },
     ],
-    hero: { bg: "#2B1B3D", fg: "#FBF7F0", accent: "#F5B841" },
+    hero: {
+      bg: "#FBF7F0",
+      fg: "#2B1B3D",
+      accent: "#F5B841",
+      image: "/projects/fittra-clinic/cover.jpg",
+      imageAspect: "16 / 9",
+    },
     mockups: [
-      { label: "Onboarding flow", type: "phone" },
-      { label: "Dashboard", type: "browser" },
-      { label: "Payment sheet", type: "phone" },
-      { label: "Course player", type: "browser" },
+      {
+        label: "Signup",
+        type: "browser",
+        image: "/projects/fittra-clinic/signup.jpg",
+        aspect: "3 / 2",
+      },
+      {
+        label: "Profile",
+        type: "browser",
+        image: "/projects/fittra-clinic/profile.jpg",
+        aspect: "3 / 2",
+      },
+      {
+        label: "Gifts & promotions",
+        type: "browser",
+        image: "/projects/fittra-clinic/gifts.jpg",
+        aspect: "3 / 2",
+      },
+      {
+        label: "Discussion",
+        type: "browser",
+        image: "/projects/fittra-clinic/discussion.jpg",
+        aspect: "3 / 2",
+      },
+      {
+        label: "Calendar",
+        type: "browser",
+        image: "/projects/fittra-clinic/calendar.jpg",
+        aspect: "3 / 2",
+      },
+      {
+        label: "Course page",
+        type: "browser",
+        image: "/projects/fittra-clinic/course.jpg",
+        aspect: "3 / 2",
+      },
+      {
+        label: "+ 12 more screens",
+        type: "browser",
+        image: "/projects/fittra-clinic/course.jpg",
+        aspect: "3 / 2",
+        moreCount: 12,
+      },
     ],
   },
   {
@@ -112,34 +162,91 @@ export const projects: Project[] = [
     sector: "E-commerce · Mobile",
     year: "2025",
     status: "live",
-    services: ["UX Research", "Mobile App Design", "Persona Mapping"],
-    tagline: "Baghdad to your basket — a mobile-first storefront.",
-    overview:
-      "Brandi needed to launch their e-commerce app in a market with fragmented shopping habits. We had to do real research before opening Figma — interviewing buyers, mapping personas, auditing competitors.",
-    problem:
-      "Fragmented shopping experience, abandoned carts, misaligned stakeholders, no clear research loop.",
-    solution:
-      "Ran the full UX cycle: stakeholder interviews, competitor audit, personas, then mobile-first flows. Iterated weekly with the build team until it was on the Play Store.",
-    process: [
-      "Stakeholder workshops to align on KPIs and constraints",
-      "Local-market competitor audit",
-      "5 user interviews → 3 personas",
-      "Information architecture + low-fi wireframes",
-      "High-fidelity UI in line with the brand identity",
-      "Two rounds of usability tests pre-launch",
+    services: [
+      "UX Research",
+      "Competitor Audit",
+      "User Flows",
+      "Mobile App Design",
+      "Design System",
     ],
-    outcomes: ["Live on Google Play", "Full UX cycle", "Mobile-first"],
+    tagline:
+      "Clarity-first e-commerce — five clean tabs and one bold CTA per screen.",
+    overview:
+      "Brandi needed a mobile storefront for a market full of overloaded e-commerce apps. We started with a Double Diamond — a competitor audit across five regional players (Onelaty, Adidas, Ordary, Emaa, Ubuy), then narrowed to four sharp problem statements before designing a clarity-first home, a five-tab nav, and a three-step checkout. Every screen ships with one job and one bold CTA.",
+    problem:
+      "Users struggled to decide what to do on the home because the hero and promotions competed for attention. Navigation labels and icons varied, slowing wayfinding. Visual inconsistency and mixed languages increased cognitive load. Primary CTAs were not visually or positionally prioritized, hurting conversion.",
+    solution:
+      "Clarity-first home — one hero, one message, one bold CTA, one featured deals strip, one category grid. Unambiguous nav — icon + label, locked to five tabs (Home, Categories, Search, Favorites, Account). Consistent system — standardized deal cards, tighter brand palette, stronger heading hierarchy. Language discipline — single language per section with a clear locale switch. Conversion mechanic — sticky CTAs, three-step checkout, basic personalization.",
+    process: [
+      "Competitor audit across five regional e-commerce apps — Onelaty, Adidas, Ordary, Emaa, Ubuy",
+      "Define — narrowed the audit into four sharp problem statements with measurable success criteria",
+      "User flows — splash → onboarding → home, with branches for search, categories, brands, favorites, cart, login, signup, forgot-password and checkout",
+      "Information architecture and low-fi wireframes for the clarity-first home and five-tab nav",
+      "High-fidelity UI in the Brandi brand — standardized deal cards, sticky CTAs, three-step checkout",
+      "Rapid A/B experiments — single hero vs stacked banners, icon-only vs icon+label nav, single-language vs mixed sections",
+      "Implementation in four sprints — IA cleanup, visual system, sticky CTA + checkout + personalization, localization policy",
+    ],
+    outcomes: [
+      "Live on Google Play",
+      "5-tab navigation, locked",
+      "3-step checkout",
+      "Single-hero home pattern",
+    ],
     liveLinks: [
       {
         label: "Google Play",
         href: "https://play.google.com/store/apps/details?id=com.brandiiq.app",
       },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/ae/app/brandi/id6754631038",
+      },
     ],
-    hero: { bg: "#F5B841", fg: "#2B1B3D", accent: "#2B1B3D" },
+    hero: {
+      bg: "#F5B841",
+      fg: "#2B1B3D",
+      accent: "#2B1B3D",
+      image: "/projects/brandi/cover.jpg",
+      imageAspect: "16 / 9",
+    },
     mockups: [
-      { label: "Home", type: "phone" },
-      { label: "Product detail", type: "phone" },
-      { label: "Cart + checkout", type: "phone" },
+      { label: "Sign in", type: "phone", image: "/projects/brandi/signin.jpg" },
+      { label: "Category", type: "phone", image: "/projects/brandi/category.jpg" },
+      { label: "Favorites", type: "phone", image: "/projects/brandi/favorites.jpg" },
+      { label: "Orders", type: "phone", image: "/projects/brandi/orders.jpg" },
+      { label: "Notifications", type: "phone", image: "/projects/brandi/notifications.jpg" },
+      { label: "My address", type: "phone", image: "/projects/brandi/address.jpg" },
+      { label: "Refer a friend", type: "phone", image: "/projects/brandi/refer.jpg" },
+      { label: "Edit profile", type: "phone", image: "/projects/brandi/edit-profile.jpg" },
+      {
+        label: "+ 33 more screens",
+        type: "phone",
+        image: "/projects/brandi/category.jpg",
+        moreCount: 33,
+      },
+    ],
+    artifacts: [
+      {
+        label: "User flow",
+        caption:
+          "End-to-end flow — search, categories, brands, favorites, login/signup, checkout and account",
+        image: "/projects/brandi/user-flow.jpg",
+        aspect: "2800 / 2165",
+      },
+      {
+        label: "Double Diamond — process",
+        caption:
+          "Discover · Define · Develop · Deliver — competitor audit, problem statements, design directions and the four-sprint implementation plan",
+        image: "/projects/brandi/process-double-diamond.jpg",
+        aspect: "1800 / 2311",
+      },
+      {
+        label: "Competitor audit",
+        caption:
+          "Five regional e-commerce apps reviewed — strengths, recurring UX issues, and the recommendations we built Brandi against",
+        image: "/projects/brandi/audit-report.jpg",
+        aspect: "1079 / 2490",
+      },
     ],
   },
   {
@@ -211,15 +318,13 @@ export const projects: Project[] = [
       "Full design handoff",
     ],
     hero: {
-      bg: "#FFD6C4",
+      bg: "#FBF7F0",
       fg: "#2B1B3D",
       accent: "#F5B841",
       image: "/projects/baba-guide/cover.jpg",
-      imageAspect: "1024 / 572",
+      imageAspect: "16 / 9",
     },
     mockups: [
-      { label: "Splash", type: "phone", image: "/projects/baba-guide/splash.png" },
-      { label: "Welcome", type: "phone", image: "/projects/baba-guide/welcome.png" },
       { label: "Home", type: "phone", image: "/projects/baba-guide/home.png" },
       { label: "Search", type: "phone", image: "/projects/baba-guide/search.png" },
       {
@@ -240,7 +345,12 @@ export const projects: Project[] = [
       },
       { label: "Reviews", type: "phone", image: "/projects/baba-guide/reviews.png" },
       { label: "Offers", type: "phone", image: "/projects/baba-guide/offers.png" },
-      { label: "Profile", type: "phone", image: "/projects/baba-guide/profile.png" },
+      {
+        label: "+ 60 more mobile screens",
+        type: "phone",
+        image: "/projects/baba-guide/home.png",
+        moreCount: 60,
+      },
       {
         label: "Admin — Admins",
         type: "browser",
@@ -260,10 +370,23 @@ export const projects: Project[] = [
         aspect: "1024 / 768",
       },
       {
+        label: "Admin — Companies",
+        type: "browser",
+        image: "/projects/baba-guide/admin-companies.png",
+        aspect: "1024 / 768",
+      },
+      {
         label: "Admin — Tours",
         type: "browser",
         image: "/projects/baba-guide/admin-tour.png",
         aspect: "1024 / 768",
+      },
+      {
+        label: "+ 15 more dashboard views",
+        type: "browser",
+        image: "/projects/baba-guide/admin-cities.png",
+        aspect: "1024 / 768",
+        moreCount: 15,
       },
     ],
   },

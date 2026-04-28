@@ -7,6 +7,14 @@ import { projects, getProject } from "@/lib/projects";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { PhoneMock, BrowserMock } from "@/components/Mockups";
+import CaseMotifs from "@/components/CaseMotifs";
+import ProcessTimeline from "@/components/ProcessTimeline";
+import SolutionGrid from "@/components/SolutionGrid";
+import OverviewBlock from "@/components/OverviewBlock";
+import ProblemList from "@/components/ProblemList";
+import OutcomeBlock from "@/components/OutcomeBlock";
+import ResponsivePairs from "@/components/ResponsivePairs";
+import ArtifactsBlock from "@/components/ArtifactsBlock";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -49,11 +57,16 @@ export default async function ProjectPage({
   const overviewLines = splitToSentences(project.overview);
   const problemPoints = splitToSentences(project.problem);
   const solutionPoints = splitToSentences(project.solution);
+  const phoneMockups = project.mockups.filter((m) => m.type === "phone");
+  const browserMockups = project.mockups.filter((m) => m.type === "browser");
+  const splitScreens = project.slug === "baba-guide";
+  const gridScreens = project.slug === "fittra-clinic";
 
   return (
     <>
       <Nav />
-      <main>
+      <main className="relative">
+        {project.slug === "baba-guide" && <CaseMotifs />}
         {/* Back link */}
         <div className="px-5 md:px-8 pt-28 md:pt-32">
           <div className="mx-auto max-w-[1100px]">
@@ -70,8 +83,8 @@ export default async function ProjectPage({
 
         {/* Header — meta row on top, big title, tagline underneath */}
         <header className="px-5 md:px-8 pt-10 pb-14 md:pb-20">
-          <div className="mx-auto max-w-[1100px]">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 mb-12 md:mb-16 max-w-3xl">
+          <div className="mx-auto max-w-[1100px] text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 mb-12 md:mb-16 max-w-3xl mx-auto">
               <MetaCell label="Project" value={`${project.n} / 0${projects.length}`} />
               <MetaCell label="Client" value={project.client} />
               <MetaCell label="Year" value={project.year} />
@@ -80,7 +93,7 @@ export default async function ProjectPage({
             <h1 className="display uppercase text-[clamp(3rem,11vw,9rem)] leading-[0.92] tracking-tight mb-6">
               {project.name}
             </h1>
-            <p className="display italic text-xl md:text-3xl text-[var(--color-fg-muted)] max-w-3xl leading-snug">
+            <p className="display italic text-xl md:text-3xl text-[var(--color-fg-muted)] max-w-3xl mx-auto leading-snug">
               {project.tagline}
             </p>
           </div>
@@ -142,115 +155,174 @@ export default async function ProjectPage({
 
         {/* Overview — sidebar label + sentence-per-line body */}
         <CaseSection label="Overview">
-          <div className="space-y-5">
-            {overviewLines.map((line, i) => (
-              <p
-                key={i}
-                className="display text-xl md:text-[28px] leading-[1.35]"
-              >
-                {line}
-              </p>
-            ))}
-          </div>
+          <OverviewBlock lines={overviewLines} accent={project.hero.accent} />
         </CaseSection>
 
         {/* Problem */}
         <CaseSection label="Problem">
-          <BulletList items={problemPoints} />
+          <ProblemList items={problemPoints} accent={project.hero.accent} />
         </CaseSection>
 
         {/* Solution */}
         <CaseSection label="Solution">
-          <BulletList items={solutionPoints} />
+          <SolutionGrid items={solutionPoints} accent={project.hero.accent} />
         </CaseSection>
 
         {/* Process */}
         <CaseSection label="Process">
-          <ol className="space-y-5">
-            {project.process.map((step, i) => (
-              <li
-                key={step}
-                className="flex gap-5 border-b border-[var(--color-border)] pb-5 last:border-b-0"
-              >
-                <span className="mono text-[var(--color-fg-subtle)] shrink-0 w-8 mt-1">
-                  0{i + 1}
-                </span>
-                <span className="display text-lg md:text-xl leading-relaxed">
-                  {step}
-                </span>
-              </li>
-            ))}
-          </ol>
+          <ProcessTimeline
+            steps={project.process}
+            accent={project.hero.accent}
+          />
         </CaseSection>
 
-        {/* Screens */}
-        <CaseSection label="Screens">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-7">
-            {project.mockups.map((m) =>
-              m.type === "browser" ? (
-                <div key={m.label} className="col-span-2 md:col-span-3">
-                  <BrowserMock
+        {/* Flow & Artifacts */}
+        {project.artifacts && project.artifacts.length > 0 && (
+          <CaseSection label="Flow">
+            <ArtifactsBlock
+              artifacts={project.artifacts}
+              accent={project.hero.accent}
+            />
+          </CaseSection>
+        )}
+
+        {/* Screens — split into Mobile + Admin for baba-guide, single Screens block otherwise */}
+        {splitScreens ? (
+          <>
+            {phoneMockups.length > 0 && (
+              <CaseSection label="Mobile">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-7">
+                  {phoneMockups.map((m) => (
+                    <PhoneMock
+                      key={m.label}
+                      bg={project.hero.bg}
+                      fg={project.hero.fg}
+                      accent={project.hero.accent}
+                      label={m.label}
+                      image={m.image}
+                      moreCount={m.moreCount}
+                      themed
+                    />
+                  ))}
+                </div>
+              </CaseSection>
+            )}
+            {browserMockups.length > 0 && (
+              <CaseSection label="Admin">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-7">
+                  {browserMockups.map((m) => (
+                    <BrowserMock
+                      key={m.label}
+                      bg={project.hero.bg}
+                      fg={project.hero.fg}
+                      accent={project.hero.accent}
+                      label={m.label}
+                      image={m.image}
+                      aspect={m.aspect}
+                      moreCount={m.moreCount}
+                      themed
+                    />
+                  ))}
+                </div>
+              </CaseSection>
+            )}
+          </>
+        ) : gridScreens ? (
+          <>
+            <CaseSection label="Screens">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                {project.mockups.map((m, i) => (
+                  <div
+                    key={m.label}
+                    className={
+                      i === project.mockups.length - 1 ? "md:col-span-2" : ""
+                    }
+                  >
+                    <BrowserMock
+                      bg={project.hero.bg}
+                      fg={project.hero.fg}
+                      accent={project.hero.accent}
+                      label={m.label}
+                      image={m.image}
+                      aspect={m.aspect}
+                      moreCount={m.moreCount}
+                      themed
+                    />
+                  </div>
+                ))}
+              </div>
+            </CaseSection>
+            <CaseSection label="Responsive">
+              <ResponsivePairs
+                bg={project.hero.bg}
+                fg={project.hero.fg}
+                accent={project.hero.accent}
+                pairs={[
+                  {
+                    label: "Signup",
+                    desktop: "/projects/fittra-clinic/signup.jpg",
+                    mobile: "/projects/fittra-clinic/signup-mobile.jpg",
+                  },
+                  {
+                    label: "Profile",
+                    desktop: "/projects/fittra-clinic/profile.jpg",
+                    mobile: "/projects/fittra-clinic/profile-mobile.jpg",
+                  },
+                  {
+                    label: "Calendar",
+                    desktop: "/projects/fittra-clinic/calendar.jpg",
+                    mobile: "/projects/fittra-clinic/calendar-mobile.jpg",
+                  },
+                ]}
+              />
+            </CaseSection>
+          </>
+        ) : (
+          <CaseSection label="Screens">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-7">
+              {project.mockups.map((m) =>
+                m.type === "browser" ? (
+                  <div key={m.label} className="col-span-2 md:col-span-3">
+                    <BrowserMock
+                      bg={project.hero.bg}
+                      fg={project.hero.fg}
+                      accent={project.hero.accent}
+                      label={m.label}
+                      image={m.image}
+                      aspect={m.aspect}
+                      moreCount={m.moreCount}
+                      themed
+                    />
+                  </div>
+                ) : (
+                  <PhoneMock
+                    key={m.label}
                     bg={project.hero.bg}
                     fg={project.hero.fg}
                     accent={project.hero.accent}
                     label={m.label}
                     image={m.image}
-                    aspect={m.aspect}
+                    moreCount={m.moreCount}
+                    themed
                   />
-                </div>
-              ) : (
-                <PhoneMock
-                  key={m.label}
-                  bg={project.hero.bg}
-                  fg={project.hero.fg}
-                  accent={project.hero.accent}
-                  label={m.label}
-                  image={m.image}
-                />
-              ),
+                ),
+              )}
+            </div>
+            {!project.mockups.some((m) => m.image) && (
+              <p className="mono text-[var(--color-fg-subtle)] mt-6 text-sm">
+                — placeholder mockups · final screenshots will replace these
+              </p>
             )}
-          </div>
-          {!project.mockups.some((m) => m.image) && (
-            <p className="mono text-[var(--color-fg-subtle)] mt-6 text-sm">
-              — placeholder mockups · final screenshots will replace these
-            </p>
-          )}
-        </CaseSection>
+          </CaseSection>
+        )}
 
         {/* Outcome */}
         <CaseSection label="Outcome">
-          <div className="flex flex-wrap gap-3 mb-8">
-            {project.outcomes.map((o) => (
-              <span
-                key={o}
-                className="rounded-full bg-[var(--color-fg)] text-[var(--color-bg)] px-4 py-2 text-base font-medium"
-              >
-                {o}
-              </span>
-            ))}
-          </div>
-          {project.liveLinks && project.liveLinks.length > 0 && (
-            <div className="mt-6">
-              <p className="mono text-[var(--color-fg-muted)] mb-3 text-sm uppercase tracking-wide">
-                See it live
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {project.liveLinks.map((l) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cursor="hover"
-                    className="inline-flex items-center gap-2 rounded-full border border-[var(--color-fg)] text-[var(--color-fg)] px-4 py-2 text-sm hover:bg-[var(--color-fg)] hover:text-[var(--color-bg)] transition-colors"
-                  >
-                    <ExternalLink className="size-3.5" />
-                    {l.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
+          <OutcomeBlock
+            outcomes={project.outcomes}
+            liveLinks={project.liveLinks}
+            accent={project.hero.accent}
+          />
         </CaseSection>
 
         {/* Prev / Next */}
@@ -311,12 +383,21 @@ function CaseSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="px-5 md:px-8 py-16 md:py-24 border-t border-[var(--color-border)]">
-      <div className="mx-auto max-w-[1100px] grid grid-cols-1 md:grid-cols-[180px_1fr] gap-6 md:gap-16">
+    <section className="px-5 md:px-8 py-14 md:py-20 border-t border-[var(--color-border)]">
+      <div className="mx-auto max-w-[1100px] grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-16">
         <div>
-          <p className="mono text-[var(--color-fg-muted)] uppercase text-[11px] tracking-[0.14em] md:sticky md:top-28">
-            {label}
-          </p>
+          <div className="md:sticky md:top-28">
+            <p className="mono text-[var(--color-fg-subtle)] uppercase text-[10px] tracking-[0.2em] mb-3">
+              Section
+            </p>
+            <p className="display uppercase text-2xl md:text-[28px] text-[var(--color-fg)] leading-[0.92]">
+              {label}
+            </p>
+            <span
+              aria-hidden
+              className="block w-8 h-[2px] bg-[var(--color-fg)] opacity-50 mt-4"
+            />
+          </div>
         </div>
         <div>{children}</div>
       </div>

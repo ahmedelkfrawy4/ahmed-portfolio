@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useTransform } from "motion/react";
 import { ArrowUpRight, ExternalLink, Lock, Clock } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type ProjectLink = {
   label: string;
@@ -334,6 +334,119 @@ function TiltCard({ p }: { p: Project }) {
 }
 
 export default function SelectedWork() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const isDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
+  const movedRef = useRef(0);
+  const velocitySamplesRef = useRef<{ x: number; t: number }[]>([]);
+  const velocityRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  const cancelMomentum = () => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    velocityRef.current = 0;
+  };
+
+  const startMomentum = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    let prev = performance.now();
+    const tick = (now: number) => {
+      const dt = now - prev;
+      prev = now;
+      el.scrollLeft += velocityRef.current * dt;
+      // Decay ~6% per 16ms frame for a graceful glide
+      velocityRef.current *= Math.pow(0.94, dt / 16);
+      if (Math.abs(velocityRef.current) > 0.02) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        velocityRef.current = 0;
+        rafRef.current = null;
+        // Re-enable snap so it eases to the nearest card
+        el.style.scrollSnapType = "";
+      }
+    };
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  const stopDrag = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    if (!isDownRef.current) return;
+    isDownRef.current = false;
+    el.classList.remove("cursor-grabbing");
+    el.classList.add("cursor-grab");
+    el.style.userSelect = "";
+    // Compute release velocity from the last few moves
+    const samples = velocitySamplesRef.current;
+    if (samples.length >= 2) {
+      const first = samples[0];
+      const last = samples[samples.length - 1];
+      const dt = last.t - first.t;
+      if (dt > 0) {
+        // Negative because scrollLeft moves opposite to drag direction
+        velocityRef.current = -(last.x - first.x) / dt;
+      }
+    }
+    velocitySamplesRef.current = [];
+    // After a real drag, swallow the next click so chips don't fire
+    if (movedRef.current > 5) {
+      const swallow = (ev: MouseEvent) => {
+        ev.stopPropagation();
+        ev.preventDefault();
+        el.removeEventListener("click", swallow, true);
+      };
+      el.addEventListener("click", swallow, true);
+    }
+    movedRef.current = 0;
+    // Glide if there's meaningful velocity, otherwise snap immediately
+    if (Math.abs(velocityRef.current) > 0.05) {
+      startMomentum();
+    } else {
+      el.style.scrollSnapType = "";
+    }
+  };
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    cancelMomentum(); // grabbing while spinning stops the glide
+    isDownRef.current = true;
+    movedRef.current = 0;
+    startXRef.current = e.pageX - el.offsetLeft;
+    startScrollLeftRef.current = el.scrollLeft;
+    velocitySamplesRef.current = [{ x: e.pageX, t: performance.now() }];
+    el.classList.add("cursor-grabbing");
+    el.classList.remove("cursor-grab");
+    el.style.scrollSnapType = "none";
+    el.style.userSelect = "none";
+  };
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDownRef.current) return;
+    const el = scrollerRef.current;
+    if (!el) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = x - startXRef.current;
+    movedRef.current = Math.max(movedRef.current, Math.abs(walk));
+    el.scrollLeft = startScrollLeftRef.current - walk;
+    // Track recent positions for velocity calculation
+    const samples = velocitySamplesRef.current;
+    samples.push({ x: e.pageX, t: performance.now() });
+    if (samples.length > 6) samples.shift();
+  };
+
   return (
     <section
       id="work"
@@ -357,7 +470,12 @@ export default function SelectedWork() {
       </div>
 
       <div
-        className="no-scrollbar flex gap-5 md:gap-7 overflow-x-auto px-5 md:px-8 snap-x snap-mandatory pb-6"
+        ref={scrollerRef}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={stopDrag}
+        onMouseLeave={stopDrag}
+        className="no-scrollbar flex gap-5 md:gap-7 overflow-x-auto px-5 md:px-8 snap-x snap-mandatory pb-6 cursor-grab select-none"
         style={{ scrollPaddingLeft: "20px" }}
       >
         <div className="shrink-0 w-0 md:w-[calc((100vw-1400px)/2)]" />

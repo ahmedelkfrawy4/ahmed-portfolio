@@ -4,15 +4,16 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
-  { label: "Work", href: "#work" },
-  { label: "Projects", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Toolbelt", href: "#toolbelt" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Projects", href: "/#projects" },
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Toolbelt", href: "/#toolbelt" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Nav() {
@@ -34,7 +35,7 @@ export default function Nav() {
         className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-4 md:pt-5"
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/85 px-3 md:px-6 py-2 md:py-2.5 backdrop-blur-md">
-          <a href="#top" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-[var(--color-fg)] ring-offset-1 ring-offset-[var(--color-bg)]">
               <Image
                 src="/ahmed.jpg"
@@ -48,26 +49,26 @@ export default function Nav() {
             <span className="mono ml-2 hidden md:inline text-[var(--color-fg-muted)]">
               · UI/UX
             </span>
-          </a>
+          </Link>
           <nav className="hidden md:flex items-center gap-7">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 className="link-underline text-sm text-[var(--color-fg)]"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="btn-pill btn-primary text-xs md:text-sm !py-2 !px-3 md:!py-2.5 md:!px-5"
             >
               Say hi<span aria-hidden className="hidden md:inline">→</span>
-            </a>
+            </Link>
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"

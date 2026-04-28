@@ -18,7 +18,13 @@ function StatusPill({ status }: { status: typeof projects[number]["status"] }) {
   }
   if (status === "internal") {
     return (
-      <span className="mono inline-flex items-center gap-1.5 rounded-full border border-[var(--color-fg)]/30 px-2.5 py-1 text-[var(--color-fg-muted)]">
+      <span
+        className="mono inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[var(--color-fg)] backdrop-blur-sm"
+        style={{
+          borderColor: "rgba(43,27,61,0.4)",
+          backgroundColor: "rgba(251,247,240,0.7)",
+        }}
+      >
         <Lock className="size-3" />
         internal
       </span>
@@ -26,14 +32,26 @@ function StatusPill({ status }: { status: typeof projects[number]["status"] }) {
   }
   if (status === "completed") {
     return (
-      <span className="mono inline-flex items-center gap-1.5 rounded-full border border-[var(--color-ochre)] bg-[var(--color-ochre)]/15 px-2.5 py-1 text-[var(--color-fg)]">
+      <span
+        className="mono inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[var(--color-plum)] backdrop-blur-sm"
+        style={{
+          borderColor: "#F5B841",
+          backgroundColor: "rgba(245,184,65,0.85)",
+        }}
+      >
         <CheckCircle2 className="size-3" />
         completed
       </span>
     );
   }
   return (
-    <span className="mono inline-flex items-center gap-1.5 rounded-full border border-dashed border-[var(--color-ochre)] px-2.5 py-1 text-[var(--color-fg)]">
+    <span
+      className="mono inline-flex items-center gap-1.5 rounded-full border border-dashed px-2.5 py-1 text-[var(--color-plum)] backdrop-blur-sm"
+      style={{
+        borderColor: "#F5B841",
+        backgroundColor: "rgba(251,247,240,0.7)",
+      }}
+    >
       <Clock className="size-3" />
       in progress
     </span>
@@ -67,21 +85,22 @@ function ProjectCard({
         delay: i * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
+      className="h-full"
     >
       <Link
         href={`/projects/${p.slug}`}
         data-cursor="hover"
-        className="group block focus:outline-none"
+        className="group block h-full focus:outline-none"
       >
         <motion.article
           onMouseMove={onMove}
           whileHover={{ y: -6 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="relative overflow-hidden rounded-[28px] border border-[var(--color-border)]"
+          className="relative h-full flex flex-col overflow-hidden rounded-[28px] border border-[var(--color-border)]"
           style={{ backgroundColor: p.hero.bg, color: p.hero.fg }}
         >
-          {/* Visual area */}
-          <div className="relative aspect-[4/3] overflow-hidden">
+          {/* Visual area — 16:9 to match the cover artwork natively */}
+          <div className="relative aspect-[16/9] overflow-hidden">
             {/* Spotlight overlay (cursor-follow) */}
             <motion.div
               aria-hidden
@@ -105,11 +124,11 @@ function ProjectCard({
               </motion.div>
             ) : (
               <motion.div
-                className="absolute inset-0 grid place-items-center px-10 pt-10 pb-4"
+                className="absolute inset-0 grid place-items-center px-10 py-6"
                 whileHover={{ scale: 1.04, y: -8 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="w-full max-w-[55%]">
+                <div className="w-full max-w-[42%]">
                   {p.mockups[0]?.type === "browser" ? (
                     <BrowserMock
                       bg={p.hero.bg}
@@ -126,24 +145,23 @@ function ProjectCard({
                 </div>
               </motion.div>
             )}
-            {/* Year + n badge */}
-            <span className="absolute top-5 left-5 mono opacity-70">
-              {p.n} · {p.year}
-            </span>
-            <span className="absolute top-5 right-5">
+            <span className="absolute top-5 right-5 z-20">
               <StatusPill status={p.status} />
             </span>
           </div>
 
-          {/* Footer info */}
-          <div className="relative px-6 md:px-7 pb-6 md:pb-7 pt-2">
+          {/* Footer info — flex-col so chips row pins to bottom across cards */}
+          <div className="relative flex flex-col flex-1 px-6 md:px-7 pt-5 pb-6 md:pb-7">
             <p className="mono opacity-70 mb-2">{p.client}</p>
             <h3 className="display text-3xl md:text-4xl mb-2 leading-[0.98]">
               {p.name}
             </h3>
-            <p className="display italic text-base md:text-lg opacity-90 mb-5 max-w-md">
+            <p className="display italic text-base md:text-lg opacity-90 max-w-md">
               {p.tagline}
             </p>
+
+            {/* Spacer that grows so the row below sits at the bottom */}
+            <div className="flex-1 min-h-5" />
 
             {/* Services chips + arrow */}
             <div className="flex items-center justify-between gap-3">
@@ -169,7 +187,7 @@ function ProjectCard({
                 initial={{ x: 8, opacity: 0 }}
                 whileHover={{ x: 0, opacity: 1 }}
                 className="absolute bottom-6 right-6 inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ backgroundColor: p.hero.accent, color: p.hero.bg === "#FBF7F0" ? "#2B1B3D" : "#2B1B3D" }}
+                style={{ backgroundColor: p.hero.accent, color: "#2B1B3D" }}
               >
                 Open case
                 <ArrowUpRight className="size-3" />
@@ -218,11 +236,13 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Cards grid */}
+        {/* Cards grid — Magdi & Injaz hidden from grid for now (detail pages still live) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.slug} p={p} i={i} />
-          ))}
+          {projects
+            .filter((p) => p.slug !== "magdi-yacoub" && p.slug !== "injaz")
+            .map((p, i) => (
+              <ProjectCard key={p.slug} p={p} i={i} />
+            ))}
         </div>
 
         {/* Footer note */}

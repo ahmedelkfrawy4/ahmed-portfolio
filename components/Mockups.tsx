@@ -8,21 +8,105 @@ export function PhoneMock({
   accent,
   label,
   image,
+  moreCount,
+  themed,
 }: {
   bg: string;
   fg: string;
   accent: string;
   label?: string;
   image?: string;
+  moreCount?: number;
+  themed?: boolean;
 }) {
+  const frameBorder = themed ? "var(--color-fg)" : fg;
+  const frameBg = themed ? "var(--color-bg)" : bg;
   if (image) {
+    if (moreCount) {
+      return (
+        <div className="relative">
+          <div className="relative">
+            {/* Ghost stack — two faint frames offset behind to imply depth */}
+            <div
+              aria-hidden
+              className="absolute inset-0 -translate-x-3 -translate-y-3 rounded-[36px] border-[6px] opacity-30"
+              style={{ borderColor: frameBorder, backgroundColor: frameBg }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 -translate-x-1.5 -translate-y-1.5 rounded-[36px] border-[6px] opacity-60"
+              style={{ borderColor: frameBorder, backgroundColor: frameBg }}
+            />
+            <div
+              className="relative w-full overflow-hidden rounded-[36px] border-[6px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)] dark:shadow-[0_20px_60px_-15px_rgba(245,241,234,0.18)]"
+              style={{
+                borderColor: frameBorder,
+                backgroundColor: frameBg,
+                aspectRatio: "1179 / 2556",
+              }}
+            >
+              <Image
+                src={image}
+                alt={label ?? "screen"}
+                fill
+                sizes="(min-width: 768px) 33vw, 50vw"
+                className="object-cover"
+              />
+              {/* Brand wash — accent gradient over the screenshot */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(135deg, ${accent}1A 0%, ${accent}CC 55%, ${accent}F2 100%)`,
+                }}
+              />
+              {/* Glass badge with the +N */}
+              <div className="absolute inset-0 flex items-center justify-center px-4">
+                <div
+                  className="flex flex-col items-center gap-1.5 rounded-[24px] px-6 py-5 backdrop-blur-md border"
+                  style={{
+                    backgroundColor: "rgba(251,247,240,0.6)",
+                    borderColor: `${fg}33`,
+                    boxShadow: "0 30px 60px -20px rgba(0,0,0,0.35)",
+                  }}
+                >
+                  <span
+                    className="display leading-none text-5xl md:text-6xl"
+                    style={{ color: fg }}
+                  >
+                    +{moreCount}
+                  </span>
+                  <span
+                    className="mono uppercase tracking-[0.16em] text-[10px] md:text-[11px] text-center"
+                    style={{ color: fg, opacity: 0.85 }}
+                  >
+                    more mobile screens
+                  </span>
+                </div>
+              </div>
+              {/* Brand pip — small dot in deep brand color */}
+              <span
+                aria-hidden
+                className="absolute top-3 right-3 h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: fg }}
+              />
+            </div>
+          </div>
+          {label && (
+            <span className="mono mt-3 block text-[var(--color-fg-subtle)] text-sm">
+              {label}
+            </span>
+          )}
+        </div>
+      );
+    }
     return (
       <div className="relative">
         <div
-          className="relative w-full overflow-hidden rounded-[36px] border-[6px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)]"
+          className="relative w-full overflow-hidden rounded-[36px] border-[6px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)] dark:shadow-[0_20px_60px_-15px_rgba(245,241,234,0.15)]"
           style={{
-            borderColor: fg,
-            backgroundColor: bg,
+            borderColor: frameBorder,
+            backgroundColor: frameBg,
             aspectRatio: "1179 / 2556",
           }}
         >
@@ -31,7 +115,7 @@ export function PhoneMock({
             alt={label ?? "screen"}
             fill
             sizes="(min-width: 768px) 33vw, 50vw"
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
         {label && (
@@ -132,6 +216,8 @@ export function BrowserMock({
   label,
   image,
   aspect,
+  moreCount,
+  themed,
 }: {
   bg: string;
   fg: string;
@@ -139,26 +225,101 @@ export function BrowserMock({
   label?: string;
   image?: string;
   aspect?: string;
+  moreCount?: number;
+  themed?: boolean;
 }) {
+  const frameBorder = themed ? "var(--color-fg)" : fg;
+  const frameBg = themed ? "var(--color-bg)" : bg;
   if (image) {
+    const ratio = aspect ?? "1024 / 768";
     return (
       <div className="relative">
-        <div
-          className="relative w-full overflow-hidden rounded-2xl border-[3px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)]"
-          style={{
-            borderColor: fg,
-            backgroundColor: bg,
-            aspectRatio: aspect ?? "1024 / 768",
-          }}
-        >
-          <Image
-            src={image}
-            alt={label ?? "screen"}
-            fill
-            sizes="(min-width: 768px) 66vw, 100vw"
-            className="object-cover object-top"
-          />
-        </div>
+        {moreCount ? (
+          <div className="relative">
+            {/* Ghost stack — two faint frames offset behind to imply depth */}
+            <div
+              aria-hidden
+              className="absolute inset-0 -translate-x-3 -translate-y-3 rounded-2xl border-[3px] opacity-30"
+              style={{ borderColor: frameBorder, backgroundColor: frameBg }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 -translate-x-1.5 -translate-y-1.5 rounded-2xl border-[3px] opacity-60"
+              style={{ borderColor: frameBorder, backgroundColor: frameBg }}
+            />
+            <div
+              className="relative w-full overflow-hidden rounded-2xl border-[3px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)] dark:shadow-[0_20px_60px_-15px_rgba(245,241,234,0.18)]"
+              style={{
+                borderColor: frameBorder,
+                backgroundColor: frameBg,
+                aspectRatio: ratio,
+              }}
+            >
+              <Image
+                src={image}
+                alt={label ?? "screen"}
+                fill
+                sizes="(min-width: 768px) 66vw, 100vw"
+                className="object-cover object-top"
+              />
+              {/* Brand wash — accent gradient over the screenshot */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(135deg, ${accent}1A 0%, ${accent}CC 55%, ${accent}F2 100%)`,
+                }}
+              />
+              {/* Glass badge with the +N */}
+              <div className="absolute inset-0 flex items-center justify-center px-6">
+                <div
+                  className="flex flex-col items-center gap-1.5 rounded-[28px] px-10 py-7 backdrop-blur-md border"
+                  style={{
+                    backgroundColor: "rgba(251,247,240,0.6)",
+                    borderColor: `${fg}33`,
+                    boxShadow: "0 30px 60px -20px rgba(0,0,0,0.35)",
+                  }}
+                >
+                  <span
+                    className="display leading-none text-6xl md:text-7xl"
+                    style={{ color: fg }}
+                  >
+                    +{moreCount}
+                  </span>
+                  <span
+                    className="mono uppercase tracking-[0.18em] text-[11px] md:text-xs"
+                    style={{ color: fg, opacity: 0.85 }}
+                  >
+                    more dashboard views
+                  </span>
+                </div>
+              </div>
+              {/* Brand pip — small dot in deep brand color */}
+              <span
+                aria-hidden
+                className="absolute top-3 right-3 h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: fg }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div
+            className="relative w-full overflow-hidden rounded-2xl border-[3px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)] dark:shadow-[0_20px_60px_-15px_rgba(245,241,234,0.15)]"
+            style={{
+              borderColor: frameBorder,
+              backgroundColor: frameBg,
+              aspectRatio: ratio,
+            }}
+          >
+            <Image
+              src={image}
+              alt={label ?? "screen"}
+              fill
+              sizes="(min-width: 768px) 66vw, 100vw"
+              className="object-cover object-top"
+            />
+          </div>
+        )}
         {label && (
           <span className="mono mt-3 block text-[var(--color-fg-subtle)] text-sm">
             {label}

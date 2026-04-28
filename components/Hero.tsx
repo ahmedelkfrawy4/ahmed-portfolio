@@ -1,6 +1,12 @@
 "use client";
 
-import { motion } from "motion/react";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  type MotionValue,
+} from "motion/react";
+import { useCallback, useEffect, useRef } from "react";
 import { ArrowDown, MapPin } from "lucide-react";
 
 const shapes = [
@@ -69,7 +75,153 @@ const shapes = [
   },
 ];
 
+type ShapeHandle = {
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+  rect: () => DOMRect | null;
+};
+
+function ShapeNode({
+  s,
+  i,
+  containerRef,
+  registerRef,
+  onDragStart,
+  onDragEnd,
+}: {
+  s: (typeof shapes)[number];
+  i: number;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  registerRef: (i: number, h: ShapeHandle) => void;
+  onDragStart: (i: number) => void;
+  onDragEnd: () => void;
+}) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    registerRef(i, {
+      x,
+      y,
+      rect: () => ref.current?.getBoundingClientRect() ?? null,
+    });
+  }, [i, registerRef, x, y]);
+
+  return (
+    <motion.div
+      ref={ref}
+      drag
+      dragConstraints={containerRef}
+      dragElastic={0.35}
+      dragTransition={{ bounceStiffness: 320, bounceDamping: 22 }}
+      onDragStart={() => onDragStart(i)}
+      onDragEnd={onDragEnd}
+      whileHover={{ scale: 1.06 }}
+      whileTap={{ scale: 0.94, cursor: "grabbing" }}
+      initial={{ opacity: 0, rotate: s.r }}
+      animate={{ opacity: 1, rotate: s.r }}
+      transition={{
+        duration: 0.7,
+        delay: 0.1 * i,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      data-cursor="hover"
+      data-invert-on-dark={s.color === "#2B1B3D" ? "true" : undefined}
+      className={`absolute grid place-items-center cursor-grab select-none mix-blend-multiply ${s.shape}`}
+      style={{
+        x,
+        y,
+        width: `clamp(${Math.round(s.size * 0.55)}px, ${s.size / 3.5}vw + 30px, ${s.size}px)`,
+        height: `clamp(${Math.round(s.size * 0.55)}px, ${s.size / 3.5}vw + 30px, ${s.size}px)`,
+        left: s.x,
+        top: s.y,
+        backgroundColor: s.color,
+      }}
+    >
+      <span
+        className="display text-xl md:text-2xl"
+        style={{
+          color: s.color === "#2B1B3D" ? "#FBF7F0" : "#2B1B3D",
+        }}
+      >
+        {s.label}
+      </span>
+    </motion.div>
+  );
+}
+
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const handlesRef = useRef<(ShapeHandle | null)[]>(
+    Array(shapes.length).fill(null),
+  );
+  const draggingIdxRef = useRef<number | null>(null);
+
+  const registerRef = useCallback((i: number, h: ShapeHandle) => {
+    handlesRef.current[i] = h;
+  }, []);
+
+  const onDragStart = useCallback((i: number) => {
+    draggingIdxRef.current = i;
+  }, []);
+  const onDragEnd = useCallback(() => {
+    draggingIdxRef.current = null;
+  }, []);
+
+  // Collision detection — push overlapping shapes apart each frame
+  useAnimationFrame(() => {
+    const handles = handlesRef.current;
+    const cRect = containerRef.current?.getBoundingClientRect();
+    if (!cRect) return;
+
+    const rects = handles.map((h) => h?.rect() ?? null);
+
+    for (let i = 0; i < handles.length; i++) {
+      for (let j = i + 1; j < handles.length; j++) {
+        const a = handles[i];
+        const b = handles[j];
+        const ra = rects[i];
+        const rb = rects[j];
+        if (!a || !b || !ra || !rb) continue;
+
+        const cax = ra.left + ra.width / 2;
+        const cay = ra.top + ra.height / 2;
+        const cbx = rb.left + rb.width / 2;
+        const cby = rb.top + rb.height / 2;
+
+        const dx = cax - cbx;
+        const dy = cay - cby;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 0.01;
+
+        // Treat shapes as circles ~85% of their diagonal — comfortable visual collision
+        const minDist = (Math.max(ra.width, ra.height) + Math.max(rb.width, rb.height)) * 0.5 * 0.88;
+
+        if (dist < minDist) {
+          const overlap = minDist - dist;
+          const ux = dx / dist;
+          const uy = dy / dist;
+          const dragging = draggingIdxRef.current;
+
+          if (dragging === i) {
+            // i is being held — push j out of the way
+            b.x.set(b.x.get() - ux * overlap);
+            b.y.set(b.y.get() - uy * overlap);
+          } else if (dragging === j) {
+            a.x.set(a.x.get() + ux * overlap);
+            a.y.set(a.y.get() + uy * overlap);
+          } else {
+            // Both idle — share the push
+            a.x.set(a.x.get() + ux * overlap * 0.5);
+            a.y.set(a.y.get() + uy * overlap * 0.5);
+            b.x.set(b.x.get() - ux * overlap * 0.5);
+            b.y.set(b.y.get() - uy * overlap * 0.5);
+          }
+        }
+      }
+    }
+  });
+
   return (
     <section
       id="top"
@@ -145,49 +297,24 @@ export default function Hero() {
 
         {/* Right: draggable shape playground */}
         <div className="relative lg:col-span-5 min-h-[340px] md:min-h-[420px]">
-          <div className="absolute inset-0 rounded-[40px] border border-dashed border-[var(--color-border)] bg-[var(--color-surface)]/40">
+          <div
+            ref={containerRef}
+            className="absolute inset-0 rounded-[40px] border border-dashed border-[var(--color-border)] bg-[var(--color-surface)]/40"
+          >
             {shapes.map((s, i) => (
-              <motion.div
+              <ShapeNode
                 key={s.label}
-                drag
-                dragElastic={0.55}
-                dragTransition={{
-                  bounceStiffness: 260,
-                  bounceDamping: 16,
-                }}
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.94, cursor: "grabbing" }}
-                initial={{ opacity: 0, y: 20, rotate: s.r }}
-                animate={{ opacity: 1, y: 0, rotate: s.r }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.1 * i,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                data-cursor="hover"
-                data-invert-on-dark={s.color === "#2B1B3D" ? "true" : undefined}
-                className={`absolute grid place-items-center cursor-grab select-none mix-blend-multiply ${s.shape}`}
-                style={{
-                  width: `clamp(${Math.round(s.size * 0.55)}px, ${s.size / 3.5}vw + 30px, ${s.size}px)`,
-                  height: `clamp(${Math.round(s.size * 0.55)}px, ${s.size / 3.5}vw + 30px, ${s.size}px)`,
-                  left: s.x,
-                  top: s.y,
-                  backgroundColor: s.color,
-                }}
-              >
-                <span
-                  className="display text-xl md:text-2xl"
-                  style={{
-                    color: s.color === "#2B1B3D" ? "#FBF7F0" : "#2B1B3D",
-                  }}
-                >
-                  {s.label}
-                </span>
-              </motion.div>
+                s={s}
+                i={i}
+                containerRef={containerRef}
+                registerRef={registerRef}
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
+              />
             ))}
 
             {/* Note */}
-            <div className="absolute bottom-4 right-5 rotate-2">
+            <div className="absolute bottom-4 right-5 rotate-2 pointer-events-none">
               <span className="mono text-[var(--color-fg-muted)]">
                 [ drag me ]
               </span>
