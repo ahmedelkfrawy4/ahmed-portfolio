@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import { ArrowUpRight, Lock, Clock, Radio, CheckCircle2 } from "lucide-react";
 import { projects } from "@/lib/projects";
@@ -87,28 +88,44 @@ function ProjectCard({
               className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               style={{ background: spotlight }}
             />
-            {/* Mockup */}
-            <motion.div
-              className="absolute inset-0 grid place-items-center px-10 pt-10 pb-4"
-              whileHover={{ scale: 1.04, y: -8 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="w-full max-w-[55%]">
-                {p.mockups[0]?.type === "browser" ? (
-                  <BrowserMock
-                    bg={p.hero.bg}
-                    fg={p.hero.fg}
-                    accent={p.hero.accent}
-                  />
-                ) : (
-                  <PhoneMock
-                    bg={p.hero.bg}
-                    fg={p.hero.fg}
-                    accent={p.hero.accent}
-                  />
-                )}
-              </div>
-            </motion.div>
+            {/* Cover image (when provided) or generic mockup */}
+            {p.hero.image ? (
+              <motion.div
+                className="absolute inset-0"
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Image
+                  src={p.hero.image}
+                  alt={`${p.name} cover`}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                className="absolute inset-0 grid place-items-center px-10 pt-10 pb-4"
+                whileHover={{ scale: 1.04, y: -8 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="w-full max-w-[55%]">
+                  {p.mockups[0]?.type === "browser" ? (
+                    <BrowserMock
+                      bg={p.hero.bg}
+                      fg={p.hero.fg}
+                      accent={p.hero.accent}
+                    />
+                  ) : (
+                    <PhoneMock
+                      bg={p.hero.bg}
+                      fg={p.hero.fg}
+                      accent={p.hero.accent}
+                    />
+                  )}
+                </div>
+              </motion.div>
+            )}
             {/* Year + n badge */}
             <span className="absolute top-5 left-5 mono opacity-70">
               {p.n} · {p.year}

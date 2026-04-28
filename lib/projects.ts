@@ -214,8 +214,8 @@ export const projects: Project[] = [
       bg: "#FFD6C4",
       fg: "#2B1B3D",
       accent: "#F5B841",
-      image: "/projects/baba-guide/desktop.png",
-      imageAspect: "4096 / 2913",
+      image: "/projects/baba-guide/cover.jpg",
+      imageAspect: "1024 / 572",
     },
     mockups: [
       { label: "Splash", type: "phone", image: "/projects/baba-guide/splash.png" },
