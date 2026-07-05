@@ -98,7 +98,7 @@ export default function Nav() {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mx-4 mt-4 rounded-[28px] bg-[var(--color-cream)] p-6 border border-[var(--color-border)]"
+              className="force-light relative mx-4 mt-4 rounded-[28px] bg-[var(--color-cream)] p-6 border border-[var(--color-border)]"
             >
               <div className="flex items-center justify-between mb-6">
                 <span className="display text-2xl">menu</span>

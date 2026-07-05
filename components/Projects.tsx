@@ -19,7 +19,7 @@ function StatusPill({ status }: { status: typeof projects[number]["status"] }) {
   if (status === "internal") {
     return (
       <span
-        className="mono inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[var(--color-fg)] backdrop-blur-sm"
+        className="mono inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[var(--color-plum)] backdrop-blur-sm"
         style={{
           borderColor: "rgba(43,27,61,0.4)",
           backgroundColor: "rgba(251,247,240,0.7)",

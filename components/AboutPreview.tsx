@@ -118,7 +118,7 @@ export default function AboutPreview() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               whileHover={{ rotate: 0, scale: 1.04, zIndex: 20 }}
-              className="paper relative w-full p-3 pb-8 rounded-md sm:p-4 sm:pb-10 lg:absolute lg:w-56 lg:top-[var(--pt)] lg:left-[var(--pl)]"
+              className="force-light paper relative w-full p-3 pb-8 rounded-md sm:p-4 sm:pb-10 lg:absolute lg:w-56 lg:top-[var(--pt)] lg:left-[var(--pl)]"
               style={
                 {
                   backgroundColor: p.bg,

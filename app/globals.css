@@ -150,6 +150,12 @@ main {
     0 1px 0 rgba(43, 27, 61, 0.04),
     0 20px 40px -20px rgba(43, 27, 61, 0.2);
 }
+/* On dark ink a plum shadow disappears — give the cards a real lift + hairline edge */
+.dark .paper {
+  box-shadow:
+    0 0 0 1px rgba(245, 241, 234, 0.08),
+    0 24px 48px -24px rgba(0, 0, 0, 0.75);
+}
 
 /* Experience band — soft blush in light, an elevated violet-charcoal in dark
    (the raw blush tint over dark ink turned muddy brown) */
