@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { Copy, Check, Mail, Phone, Linkedin, MapPin } from "lucide-react";
 
-const EMAIL = "ahmedelkfrawy4@gmail.com";
+const EMAIL = "info@ahmedelkfrawy.com";
 const PHONE = "+201093839772";
 const PHONE_DISPLAY = "+20 109 383 9772";
 const LINKEDIN = "https://www.linkedin.com/in/ahmedelkfrawy";

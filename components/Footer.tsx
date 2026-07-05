@@ -1,6 +1,6 @@
 const links = {
   contact: [
-    { label: "Email", href: "mailto:ahmedelkfrawy4@gmail.com" },
+    { label: "Email", href: "mailto:info@ahmedelkfrawy.com" },
     { label: "Phone", href: "tel:+201093839772" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ahmedelkfrawy" },
   ],

@@ -129,7 +129,7 @@ export default function Nav() {
                 ))}
               </nav>
               <p className="hand text-2xl text-[var(--color-fg)] mt-6 -rotate-1">
-                ahmedelkfrawy4@gmail.com
+                info@ahmedelkfrawy.com
               </p>
             </motion.div>
           </motion.div>
