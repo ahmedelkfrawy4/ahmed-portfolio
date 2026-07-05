@@ -89,7 +89,7 @@ const groups: Group[] = [
     bg: "#D4FF3A",
     fg: "#2B1B3D",
     accent: "#2B1B3D",
-    pin: "#2B1B3D",
+    pin: "#FFD6C4",
     icon: Users,
     hand: "ship together or not at all",
     chips: [

@@ -151,6 +151,26 @@ main {
     0 20px 40px -20px rgba(43, 27, 61, 0.2);
 }
 
+/* Experience band — soft blush in light, an elevated violet-charcoal in dark
+   (the raw blush tint over dark ink turned muddy brown) */
+.experience-bg {
+  background: color-mix(in srgb, var(--color-blush) 30%, var(--color-bg));
+}
+.dark .experience-bg {
+  background: #17131F;
+}
+
+/* Nav pill — give it a defined, slightly-elevated edge in dark */
+.dark .nav-pill {
+  background-color: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  border-color: rgba(245, 241, 234, 0.22);
+}
+
+/* Hero play-frame — keep the dashed boundary readable on dark ink */
+.dark .play-frame {
+  border-color: rgba(245, 241, 234, 0.14);
+}
+
 /* Sticker tilt */
 .sticker {
   transform: rotate(var(--r, -3deg));

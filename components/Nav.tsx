@@ -34,7 +34,7 @@ export default function Nav() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-4 md:pt-5"
       >
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/85 px-3 md:px-6 py-2 md:py-2.5 backdrop-blur-md">
+        <div className="nav-pill mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-[var(--color-border)] bg-[var(--color-bg)]/85 px-3 md:px-6 py-2 md:py-2.5 backdrop-blur-md">
           <Link href="/" className="flex items-center gap-2">
             <span className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-[var(--color-fg)] ring-offset-1 ring-offset-[var(--color-bg)]">
               <Image

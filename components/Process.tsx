@@ -119,7 +119,7 @@ export default function Process() {
     <section
       id="experience"
       ref={ref}
-      className="relative border-t border-[var(--color-border)] bg-[var(--color-blush)]/30"
+      className="experience-bg relative border-t border-[var(--color-border)]"
       style={{ height: "200vh" }}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
@@ -183,9 +183,9 @@ export default function Process() {
               {/* Track between cards */}
               {i < stations.length - 1 && (
                 <div className="flex items-center">
-                  <div className="h-0.5 w-16 md:w-24 bg-[var(--color-plum)]/20 rounded-full" />
-                  <div className="h-3 w-3 rounded-full bg-[var(--color-plum)]" />
-                  <div className="h-0.5 w-16 md:w-24 bg-[var(--color-plum)]/20 rounded-full" />
+                  <div className="h-0.5 w-16 md:w-24 bg-[var(--color-fg)]/25 rounded-full" />
+                  <div className="h-3 w-3 rounded-full bg-[var(--color-fg)]" />
+                  <div className="h-0.5 w-16 md:w-24 bg-[var(--color-fg)]/25 rounded-full" />
                 </div>
               )}
             </div>
@@ -196,7 +196,7 @@ export default function Process() {
         {/* Progress bar */}
         <div className="mt-auto px-5 md:px-8 pb-10">
           <div className="mx-auto max-w-[1400px]">
-            <div className="relative h-1 w-full overflow-hidden rounded-full bg-[var(--color-plum)]/15">
+            <div className="relative h-1 w-full overflow-hidden rounded-full bg-[var(--color-fg)]/15">
               <motion.div
                 style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
                 className="absolute inset-0 bg-[var(--color-acid)]"

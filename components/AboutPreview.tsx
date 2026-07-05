@@ -52,6 +52,15 @@ const polaroids: Polaroid[] = [
   },
 ];
 
+// Desktop scatter positions (top, left in px) — a loose 2×2 so no card
+// covers the one beneath it and every caption stays readable.
+const FAN = [
+  { t: 0, l: 0 },
+  { t: 60, l: 250 },
+  { t: 330, l: 30 },
+  { t: 390, l: 270 },
+];
+
 export default function AboutPreview() {
   return (
     <section
@@ -96,7 +105,7 @@ export default function AboutPreview() {
         </div>
 
         {/* Polaroids — stacked fan on desktop, scatter grid on mobile */}
-        <div className="relative lg:col-span-5 grid grid-cols-2 gap-4 sm:gap-5 lg:block lg:min-h-[620px]">
+        <div className="relative lg:col-span-5 grid grid-cols-2 gap-4 sm:gap-5 lg:block lg:min-h-[760px]">
           {polaroids.map((p, i) => (
             <motion.div
               key={i}
@@ -109,14 +118,14 @@ export default function AboutPreview() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               whileHover={{ rotate: 0, scale: 1.04, zIndex: 20 }}
-              className="paper relative w-full p-3 pb-8 rounded-md sm:p-4 sm:pb-10 lg:absolute lg:w-72 lg:top-[var(--pt)] lg:left-[var(--pl)]"
+              className="paper relative w-full p-3 pb-8 rounded-md sm:p-4 sm:pb-10 lg:absolute lg:w-56 lg:top-[var(--pt)] lg:left-[var(--pl)]"
               style={
                 {
                   backgroundColor: p.bg,
                   zIndex:
                     polaroids.length - i + (p.type === "photo" ? 10 : 0),
-                  "--pt": `${i * 90 + 10}px`,
-                  "--pl": `${(i % 2) * 90 + 10}px`,
+                  "--pt": `${FAN[i].t + 10}px`,
+                  "--pl": `${FAN[i].l + 10}px`,
                 } as React.CSSProperties
               }
               data-cursor="hover"

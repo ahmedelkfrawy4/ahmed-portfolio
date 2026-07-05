@@ -299,7 +299,7 @@ export default function Hero() {
         <div className="relative lg:col-span-5 min-h-[340px] md:min-h-[420px]">
           <div
             ref={containerRef}
-            className="absolute inset-0 rounded-[40px] border border-dashed border-[var(--color-border)] bg-[var(--color-surface)]/40"
+            className="play-frame absolute inset-0 rounded-[40px] border border-dashed border-[var(--color-border)] bg-[var(--color-surface)]/60"
           >
             {shapes.map((s, i) => (
               <ShapeNode
