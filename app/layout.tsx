@@ -32,12 +32,12 @@ export const metadata: Metadata = {
   },
   description:
     "UI/UX Designer with 3+ years crafting digital experiences across e-commerce, healthcare, education and fintech. Cairo · open to remote.",
-  metadataBase: new URL("https://ahmed-elkfrawy.netlify.app"),
+  metadataBase: new URL("https://ahmedelkfrawy.com"),
   openGraph: {
     type: "website",
     locale: "en_GB",
     siteName: "Ahmed Elkfrawy",
-    url: "https://ahmed-elkfrawy.netlify.app",
+    url: "https://ahmedelkfrawy.com",
     title: "Ahmed Elkfrawy — UI/UX Designer",
     description:
       "UI/UX Designer with 3+ years crafting digital experiences across e-commerce, healthcare, education and fintech. Cairo · open to remote.",

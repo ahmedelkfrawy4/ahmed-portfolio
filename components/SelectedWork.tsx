@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform } from "motion/react";
-import { ArrowUpRight, ExternalLink, Lock, Clock } from "lucide-react";
+import { ExternalLink, Lock, Clock } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 type ProjectLink = {
@@ -315,18 +315,14 @@ function TiltCard({ p }: { p: Project }) {
 
       <div className="flex items-center justify-between">
         <span className="mono opacity-70">{p.year}</span>
-        <span
-          className="group inline-flex items-center gap-1.5 text-sm"
-          data-cursor="hover"
-        >
+        <span className="mono opacity-70">
           {p.links?.some((l) => l.href)
-            ? "Open the live work"
+            ? "live links above"
             : p.links?.some((l) => l.status === "in-progress")
-            ? "Shipping soon"
+            ? "shipping soon"
             : p.links?.length
-            ? "Internal — available on request"
-            : "Case file"}
-          <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            ? "internal work"
+            : "role on request"}
         </span>
       </div>
     </motion.article>
@@ -456,15 +452,15 @@ export default function SelectedWork() {
         <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
           <div>
             <p className="mono text-[var(--color-fg-muted)] mb-3">
-              case files · 01 – 06 · <span className="text-[var(--color-plum)]">8 live links</span>
+              where I&rsquo;ve worked · 01 – 06 · <span className="text-[var(--color-fg)] font-medium">7 live links</span>
             </p>
             <h2 className="display text-5xl md:text-7xl">
-              Work I&rsquo;m <span className="italic">proud</span> of.
+              Places I&rsquo;ve <span className="italic">worked</span>.
             </h2>
           </div>
           <p className="max-w-sm text-[var(--color-fg-muted)]">
-            Six domains. Eight shipped products. Click any chip to open the
-            live thing.
+            Six teams across six domains. Tap any chip to open a live product —
+            the rest shipped internally.
           </p>
         </div>
       </div>

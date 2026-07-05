@@ -234,7 +234,7 @@ export default function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
           </span>
-          Available · April 2026
+          Available for work
         </div>
         <div className="mono hidden md:flex items-center gap-2">
           <MapPin className="size-3" /> Cairo, Egypt · open to remote

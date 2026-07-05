@@ -25,7 +25,7 @@ export default async function OgImage() {
   const eyebrow = "UI/UX DESIGNER · CAIRO";
   const headline = "Ahmed Elkfrawy";
   const sub = "3+ years across healthcare, fintech, e-commerce & EdTech";
-  const url = "ahmed-elkfrawy.netlify.app";
+  const url = "ahmedelkfrawy.com";
 
   let fraunces: ArrayBuffer | null = null;
   let inter: ArrayBuffer | null = null;

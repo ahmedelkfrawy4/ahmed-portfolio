@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Linkedin, Quote } from "lucide-react";
 
 const stats = [
   { value: "+30%", label: "sales lift · MTN" },
@@ -11,19 +12,88 @@ const stats = [
   { value: "7", label: "stations on the train" },
 ];
 
-// Marquee words
-const words = [
-  "research", "wireframes", "user flows", "prototypes",
-  "design systems", "usability testing", "responsive UI",
-  "competitor audits", "persona mapping", "interaction design",
-  "stakeholder interviews", "sprint planning", "visual design",
+type Praise = {
+  name: string;
+  role: string;
+  relation: string;
+  initials: string;
+  href: string;
+  accent: string;
+  quote: string;
+};
+
+// Real LinkedIn recommendations — name links to each person's profile.
+const praise: Praise[] = [
+  {
+    name: "Amr Ayad",
+    role: "Software Team Leader",
+    relation: "managed Ahmed directly",
+    initials: "AA",
+    href: "https://www.linkedin.com/in/amrahmedmohmed/",
+    accent: "#F5B841",
+    quote:
+      "As Ahmed's direct manager, I was consistently impressed by his professionalism, creative problem-solving, and eagerness to improve. He brings fresh ideas and a positive, solutions-focused mindset to every challenge — a rare balance of technical skill, initiative, and team spirit. Highly recommended!",
+  },
+  {
+    name: "Ahmed Esmail",
+    role: "Software Engineer · Frontend",
+    relation: "same team · 2025",
+    initials: "AE",
+    href: "https://www.linkedin.com/in/ahmed-esmail-a28152239/",
+    accent: "#FFD6C4",
+    quote:
+      "One of the most talented UI/UX designers I've collaborated with. He translates complex requirements into clean, intuitive, visually stunning designs, with a deep understanding of user behavior. Detail-oriented and open to feedback — if you want someone who can elevate your product through smart, user-focused design, I highly recommend him.",
+  },
+  {
+    name: "Youssef Alaa Omar",
+    role: "Security Engineer @ Roma MPH",
+    relation: "same team",
+    initials: "YO",
+    href: "https://www.linkedin.com/in/youssef-alaa-omar/",
+    accent: "#D4FF3A",
+    quote:
+      "Truly a talented UI/UX designer. He understands user needs and translates them into intuitive, appealing designs that balance usability and aesthetics. Collaborative, open to feedback, and full of creative solutions that add real value.",
+  },
+  {
+    name: "Mazin Islam",
+    role: "Frontend Engineer @ Robusta Studio",
+    relation: "same team · 2025",
+    initials: "MI",
+    href: "https://www.linkedin.com/in/mazin-islam-88658b22b/",
+    accent: "#F5B841",
+    quote:
+      "I'm consistently impressed by Ahmed's professionalism and innovative thinking. His dedication to continuous learning shines through in his work — it's inspiring to collaborate with someone so passionate and skilled.",
+  },
+  {
+    name: "Hesham Gamal",
+    role: "Senior Frontend Developer @ BG",
+    relation: "same team · 2022",
+    initials: "HG",
+    href: "https://www.linkedin.com/in/shypoup/",
+    accent: "#FFD6C4",
+    quote:
+      "Very talented and a genuinely hard worker. He's clever about communicating with developers and shaping his work so it's easy to build.",
+  },
+  {
+    name: "Muhammad ElZedy",
+    role: "Senior DevOps Engineer @ VOIS",
+    relation: "cross-team collaborator",
+    initials: "ME",
+    href: "https://www.linkedin.com/in/mohamed-el-zedy/",
+    accent: "#D4FF3A",
+    quote:
+      "A talented UX/UI designer with a great eye for detail and strong user empathy. He combines creativity with practical thinking, always delivering clean, intuitive, impactful designs. A pleasure to collaborate with — highly recommended.",
+  },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-plum)] text-[var(--color-cream)]">
+    <section
+      id="praise"
+      className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-plum)] text-[var(--color-cream)]"
+    >
       {/* Big numbers grid */}
-      <div className="px-5 md:px-8 py-24 md:py-32">
+      <div className="px-5 md:px-8 pt-24 md:pt-32 pb-16 md:pb-20">
         <div className="mx-auto max-w-[1400px]">
           <p className="mono text-[var(--color-ochre)] mb-4">
             the numbers · proof
@@ -58,30 +128,73 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* Marquee */}
-      <div className="border-t border-[var(--color-cream)]/10 py-8 overflow-hidden">
-        <div className="flex whitespace-nowrap marquee-track">
-          {[...Array(2)].map((_, copy) => (
-            <div key={copy} className="flex items-center gap-10 pr-10">
-              {words.map((w, i) => (
-                <span key={`${copy}-${w}`} className="flex items-center gap-10">
-                  <span
-                    className={`display text-5xl md:text-7xl ${
-                      i % 2 === 0 ? "italic" : ""
-                    }`}
-                    style={{
-                      color: i % 3 === 0 ? "#F5B841" : i % 3 === 1 ? "#FFD6C4" : "#D4FF3A",
-                    }}
-                  >
-                    {w}
-                  </span>
-                  <span className="text-[var(--color-ochre)] display text-5xl md:text-7xl">
-                    ✺
-                  </span>
-                </span>
-              ))}
+      {/* Testimonials wall — real LinkedIn recommendations */}
+      <div className="border-t border-[var(--color-cream)]/10 px-5 md:px-8 py-20 md:py-28">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-12 md:mb-16">
+            <div>
+              <p className="mono text-[var(--color-ochre)] mb-4">
+                the words · people I&rsquo;ve worked with
+              </p>
+              <h2 className="display text-5xl md:text-7xl max-w-3xl">
+                What teammates <span className="italic">say</span>.
+              </h2>
             </div>
-          ))}
+            <p className="max-w-xs text-[var(--color-cream)]/70">
+              Engineers, a manager, and cross-team partners on what it&rsquo;s
+              like to build with me. Every name links to LinkedIn.
+            </p>
+          </div>
+
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
+            {praise.map((p, i) => (
+              <motion.figure
+                key={p.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: (i % 3) * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="break-inside-avoid mb-5 rounded-[24px] border border-[var(--color-cream)]/15 bg-[#3A2554]/50 p-6 md:p-7"
+              >
+                <Quote
+                  className="size-6 mb-3"
+                  style={{ color: p.accent }}
+                  aria-hidden
+                />
+                <blockquote className="text-[15px] md:text-base leading-relaxed text-[var(--color-cream)]/90">
+                  {p.quote}
+                </blockquote>
+                <figcaption className="mt-5 pt-4 border-t border-[var(--color-cream)]/10 flex items-center gap-3">
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full display text-sm"
+                    style={{ backgroundColor: p.accent, color: "#2B1B3D" }}
+                    aria-hidden
+                  >
+                    {p.initials}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cursor="hover"
+                      className="link-underline display text-lg leading-tight inline-flex items-center gap-1.5"
+                    >
+                      {p.name}
+                      <Linkedin className="size-3.5 opacity-70" />
+                    </a>
+                    <span className="block text-xs text-[var(--color-cream)]/55 mt-0.5">
+                      {p.role} · {p.relation}
+                    </span>
+                  </span>
+                </figcaption>
+              </motion.figure>
+            ))}
+          </div>
         </div>
       </div>
     </section>

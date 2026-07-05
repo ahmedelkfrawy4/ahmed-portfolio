@@ -50,9 +50,14 @@ export default async function ProjectPage({
   const project = getProject(slug);
   if (!project) notFound();
 
-  const idx = projects.findIndex((p) => p.slug === slug);
-  const prev = idx > 0 ? projects[idx - 1] : projects[projects.length - 1];
-  const next = idx < projects.length - 1 ? projects[idx + 1] : projects[0];
+  // Prev/Next cycles only through finished, grid-visible case studies —
+  // never routes a visitor into an unfinished placeholder page.
+  const hidden = new Set(["magdi-yacoub", "injaz"]);
+  const visible = projects.filter((p) => !hidden.has(p.slug));
+  const vIdx = visible.findIndex((p) => p.slug === slug);
+  const baseIdx = vIdx === -1 ? 0 : vIdx;
+  const prev = visible[(baseIdx - 1 + visible.length) % visible.length];
+  const next = visible[(baseIdx + 1) % visible.length];
 
   const overviewLines = splitToSentences(project.overview);
   const problemPoints = splitToSentences(project.problem);
