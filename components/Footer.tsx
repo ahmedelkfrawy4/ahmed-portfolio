@@ -1,3 +1,5 @@
+import VariableProximity from "./VariableProximity";
+
 const links = {
   contact: [
     { label: "Email", href: "mailto:info@ahmedelkfrawy.com" },
@@ -59,7 +61,8 @@ export default function Footer() {
 
         {/* Giant wordmark */}
         <div className="display text-[clamp(5rem,22vw,22rem)] leading-[0.85] -mb-6 opacity-90">
-          elkfrawy<span className="italic text-[var(--color-ochre)]">.</span>
+          <VariableProximity label="elkfrawy" />
+          <span className="italic text-[var(--color-ochre)]">.</span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-8 border-t border-[var(--color-cream)]/10 text-xs text-[var(--color-cream)]/60">

@@ -44,7 +44,7 @@ export default function ContactCTA() {
       </motion.svg>
 
       <div className="mx-auto max-w-[1400px] px-5 md:px-8 py-28 md:py-40">
-        <p className="mono opacity-70 mb-6">the contact · chapter final</p>
+        <p className="mono mb-6">the contact · chapter final</p>
         <h2 className="display text-[clamp(3.5rem,11vw,12rem)] mb-4">
           Let&rsquo;s make <span className="italic">something</span>.
         </h2>

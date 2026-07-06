@@ -2,6 +2,9 @@
 
 import { motion } from "motion/react";
 import { Linkedin, Quote } from "lucide-react";
+import CountUp from "./CountUp";
+import AuroraField from "./AuroraField";
+import ShinyText from "./ShinyText";
 
 const stats = [
   { value: "+30%", label: "sales lift · MTN" },
@@ -93,10 +96,11 @@ export default function Testimonials() {
       className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-plum)] text-[var(--color-cream)]"
     >
       {/* Big numbers grid */}
-      <div className="px-5 md:px-8 pt-24 md:pt-32 pb-16 md:pb-20">
-        <div className="mx-auto max-w-[1400px]">
-          <p className="mono text-[var(--color-ochre)] mb-4">
-            the numbers · proof
+      <div className="relative px-5 md:px-8 pt-24 md:pt-32 pb-16 md:pb-20">
+        <AuroraField />
+        <div className="relative z-10 mx-auto max-w-[1400px]">
+          <p className="mono mb-4">
+            <ShinyText base="#F5B841">the numbers · proof</ShinyText>
           </p>
           <h2 className="display text-5xl md:text-7xl mb-14 max-w-3xl">
             Real outcomes, not pretty <span className="italic">screenshots</span>.
@@ -116,8 +120,8 @@ export default function Testimonials() {
                 }}
                 className="bg-[var(--color-plum)] p-8 md:p-12 hover:bg-[#3A2554] transition-colors"
               >
-                <div className="display text-6xl md:text-8xl mb-3 text-[var(--color-ochre)]">
-                  {s.value}
+                <div className="display text-6xl md:text-8xl mb-3 text-[var(--color-ochre)] tabular-nums">
+                  <CountUp value={s.value} />
                 </div>
                 <div className="mono text-[var(--color-cream)]/70">
                   {s.label}

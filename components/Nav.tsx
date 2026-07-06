@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import Magnet from "./Magnet";
 
 const links = [
   { label: "Work", href: "/#work" },
@@ -63,12 +64,14 @@ export default function Nav() {
           </nav>
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <Link
-              href="/#contact"
-              className="btn-pill btn-primary text-xs md:text-sm !py-2 !px-3 md:!py-2.5 md:!px-5"
-            >
-              Say hi<span aria-hidden className="hidden md:inline">→</span>
-            </Link>
+            <Magnet>
+              <Link
+                href="/#contact"
+                className="btn-pill btn-primary text-xs md:text-sm !py-2 !px-3 md:!py-2.5 md:!px-5"
+              >
+                Say hi<span aria-hidden className="hidden md:inline">→</span>
+              </Link>
+            </Magnet>
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"

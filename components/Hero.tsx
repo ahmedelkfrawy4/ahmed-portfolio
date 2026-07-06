@@ -8,6 +8,7 @@ import {
 } from "motion/react";
 import { useCallback, useEffect, useRef } from "react";
 import { ArrowDown, MapPin } from "lucide-react";
+import Magnet from "./Magnet";
 
 const shapes = [
   {
@@ -280,12 +281,16 @@ export default function Hero() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <a href="#work" className="btn-pill btn-primary">
-              See selected work <span aria-hidden>→</span>
-            </a>
-            <a href="#contact" className="btn-pill btn-ghost">
-              Book an intro call
-            </a>
+            <Magnet>
+              <a href="#work" className="btn-pill btn-primary">
+                See selected work <span aria-hidden>→</span>
+              </a>
+            </Magnet>
+            <Magnet>
+              <a href="#contact" className="btn-pill btn-ghost">
+                Book an intro call
+              </a>
+            </Magnet>
           </div>
 
           <p className="hand mt-5 text-[var(--color-fg-muted)] text-xl md:text-2xl">

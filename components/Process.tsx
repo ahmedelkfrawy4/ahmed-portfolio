@@ -113,7 +113,7 @@ export default function Process() {
     target: ref,
     offset: ["start start", "end end"],
   });
-  const x = useTransform(scrollYProgress, [0, 0.9], [0, -maxTranslate]);
+  const x = useTransform(scrollYProgress, [0, 0.96], [0, -maxTranslate]);
 
   return (
     <section
@@ -190,7 +190,9 @@ export default function Process() {
               )}
             </div>
           ))}
-          <div className="w-[20vw] shrink-0" />
+          {/* Trailing spacer — mirrors the leading gutter so the last card
+              rests with the same margin the first card has, no dead void */}
+          <div className="shrink-0 w-[max(20px,calc((100vw-1400px)/2+20px))] md:w-[max(32px,calc((100vw-1400px)/2+32px))]" />
         </motion.div>
 
         {/* Progress bar */}

@@ -7,6 +7,17 @@ import { ArrowUpRight, Lock, Clock, Radio, CheckCircle2 } from "lucide-react";
 import { projects } from "@/lib/projects";
 import { PhoneMock, BrowserMock } from "@/components/Mockups";
 
+// Pick plum or cream text so it stays legible on any accent color (some cards
+// use a plum accent, which made the plum-on-plum pill text invisible).
+function readableOn(hex: string) {
+  const c = hex.replace("#", "");
+  const r = parseInt(c.slice(0, 2), 16);
+  const g = parseInt(c.slice(2, 4), 16);
+  const b = parseInt(c.slice(4, 6), 16);
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return lum > 0.6 ? "#2B1B3D" : "#FBF7F0";
+}
+
 function StatusPill({ status }: { status: typeof projects[number]["status"] }) {
   if (status === "live") {
     return (
@@ -182,16 +193,17 @@ function ProjectCard({
                 )}
               </div>
 
-              {/* Reveal pill on hover */}
-              <motion.span
-                initial={{ x: 8, opacity: 0 }}
-                whileHover={{ x: 0, opacity: 1 }}
-                className="absolute bottom-6 right-6 inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ backgroundColor: p.hero.accent, color: "#2B1B3D" }}
+              {/* Reveal pill — sits opposite the chips, slides in on card hover */}
+              <span
+                className="shrink-0 inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                style={{
+                  backgroundColor: p.hero.accent,
+                  color: readableOn(p.hero.accent),
+                }}
               >
                 Open case
                 <ArrowUpRight className="size-3" />
-              </motion.span>
+              </span>
             </div>
           </div>
 

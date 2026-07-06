@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import ScrollReveal from "./ScrollReveal";
 
 type Polaroid =
   | {
@@ -74,7 +75,7 @@ export default function AboutPreview() {
             about · the operating system
           </p>
           <h2 className="display text-5xl md:text-7xl mb-8">
-            The quiet <span className="italic">translator</span> between users and teams.
+            <ScrollReveal text="The quiet *translator* between users and teams." />
           </h2>
           <div className="space-y-5 text-lg md:text-xl text-[var(--color-fg-muted)] leading-relaxed max-w-2xl">
             <p>
