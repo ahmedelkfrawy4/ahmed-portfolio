@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Copy, Check, Mail, Phone, Linkedin, MapPin } from "lucide-react";
+import ContactForm from "./ContactForm";
 
 const EMAIL = "info@ahmedelkfrawy.com";
 const PHONE = "+201093839772";
@@ -51,6 +52,18 @@ export default function ContactCTA() {
         <p className="hand text-3xl md:text-4xl -rotate-2 mb-14">
           say hi — I reply fast ↓
         </p>
+
+        {/* Message form */}
+        <div className="max-w-4xl mb-8">
+          <ContactForm />
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-4 max-w-4xl mb-8">
+          <span className="h-px flex-1 bg-[var(--color-plum)]/20" />
+          <span className="mono opacity-60">or reach me directly</span>
+          <span className="h-px flex-1 bg-[var(--color-plum)]/20" />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl">
           {/* Email */}
@@ -144,7 +157,7 @@ export default function ContactCTA() {
         </div>
 
         <p className="hand text-2xl md:text-3xl mt-14 rotate-1 opacity-80 max-w-2xl">
-          — I reply to every email within 24h, weekdays. No funnels, no forms,
+          — I reply to every message within 24h, weekdays. No funnels, no bots,
           just a person.
         </p>
       </div>
