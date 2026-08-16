@@ -390,6 +390,97 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "bayt-alonoutha",
+    n: "06",
+    name: "Bayt Al-Onoutha",
+    client: "House of Femininity — with Roma",
+    sector: "Women's Wellness · Membership Platform",
+    year: "2026",
+    status: "live",
+    services: [
+      "UI/UX Design",
+      "Web Platform",
+      "Arabic-first / RTL",
+      "Design System",
+    ],
+    tagline: "Everything that supports you to be — you.",
+    overview:
+      "Bayt Al-Onoutha (House of Femininity) is a women's wellness and self-development platform, designed with Roma. Members move through six themed 'wings' of video courses, join live coaching sessions, follow a daily emotional-fitness practice, and connect through a private community. The whole experience is Arabic-first and RTL, wrapped in a calm rose-and-cream brand. I designed the full product — from onboarding and browsing to the video player, subscription tiers, wallet and account.",
+    problem:
+      "A rich library of content and coaching had no home that felt as warm as the material itself. Members needed to discover courses across many themes, subscribe with confidence, watch on any device, and follow their own journey — without the platform ever feeling clinical or overwhelming. All of it Arabic-first, RTL, on both web and mobile.",
+    solution:
+      "Designed a complete Arabic-first platform around six clear content wings. A gentle onboarding and sign-in flow, a browsing experience that scans fast, a focused video player, transparent subscription tiers, and a wallet and profile that keep everything in one place. One calm, rose-toned design system threads through every screen — logged-in and guest alike.",
+    process: [
+      "Mapped the content model — six wings, courses, live sessions and monthly trends",
+      "Information architecture for members and guests across web + mobile",
+      "Arabic-first / RTL wireframes for onboarding, browsing, player and account",
+      "High-fidelity UI in a rose-and-cream design system with reusable components",
+      "Subscription, wallet and payment flows designed end-to-end",
+      "Built alongside the Roma team through to the live product",
+    ],
+    outcomes: [
+      "Live in Arabic",
+      "Web + mobile, RTL",
+      "Full design system",
+      "Six content wings",
+    ],
+    liveLinks: [
+      { label: "beitalonoutha.com", href: "https://beitalonoutha.com/ar" },
+    ],
+    hero: {
+      bg: "#FBF4EF",
+      fg: "#5B2B40",
+      accent: "#C85F7E",
+      image: "/projects/bayt-alonoutha/cover.jpg",
+      imageAspect: "16 / 9",
+    },
+    mockups: [
+      {
+        label: "Sign in",
+        type: "browser",
+        image: "/projects/bayt-alonoutha/signin.jpg",
+        aspect: "1440 / 792",
+      },
+      {
+        label: "Video player",
+        type: "browser",
+        image: "/projects/bayt-alonoutha/player.jpg",
+        aspect: "1440 / 822",
+      },
+      {
+        label: "Profile — overview",
+        type: "browser",
+        image: "/projects/bayt-alonoutha/profile.jpg",
+        aspect: "1440 / 1059",
+      },
+      {
+        label: "Cart",
+        type: "browser",
+        image: "/projects/bayt-alonoutha/cart.jpg",
+        aspect: "1440 / 1024",
+      },
+      {
+        label: "Payments & subscriptions",
+        type: "browser",
+        image: "/projects/bayt-alonoutha/payments.jpg",
+        aspect: "1440 / 1032",
+      },
+      {
+        label: "Wallet dashboard",
+        type: "browser",
+        image: "/projects/bayt-alonoutha/wallet.jpg",
+        aspect: "1440 / 1082",
+      },
+      {
+        label: "+ 40 more screens",
+        type: "browser",
+        image: "/projects/bayt-alonoutha/player.jpg",
+        aspect: "1440 / 822",
+        moreCount: 40,
+      },
+    ],
+  },
 ];
 
 export function getProject(slug: string) {

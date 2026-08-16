@@ -119,7 +119,9 @@ export default async function ProjectPage({
   const phoneMockups = project.mockups.filter((m) => m.type === "phone");
   const browserMockups = project.mockups.filter((m) => m.type === "browser");
   const splitScreens = project.slug === "baba-guide";
-  const gridScreens = project.slug === "fittra-clinic";
+  const gridScreens =
+    project.slug === "fittra-clinic" || project.slug === "bayt-alonoutha";
+  const responsivePairs = project.slug === "fittra-clinic";
 
   return (
     <>
@@ -313,30 +315,32 @@ export default async function ProjectPage({
                 ))}
               </div>
             </CaseSection>
-            <CaseSection label="Responsive">
-              <ResponsivePairs
-                bg={project.hero.bg}
-                fg={project.hero.fg}
-                accent={project.hero.accent}
-                pairs={[
-                  {
-                    label: "Signup",
-                    desktop: "/projects/fittra-clinic/signup.jpg",
-                    mobile: "/projects/fittra-clinic/signup-mobile.jpg",
-                  },
-                  {
-                    label: "Profile",
-                    desktop: "/projects/fittra-clinic/profile.jpg",
-                    mobile: "/projects/fittra-clinic/profile-mobile.jpg",
-                  },
-                  {
-                    label: "Calendar",
-                    desktop: "/projects/fittra-clinic/calendar.jpg",
-                    mobile: "/projects/fittra-clinic/calendar-mobile.jpg",
-                  },
-                ]}
-              />
-            </CaseSection>
+            {responsivePairs && (
+              <CaseSection label="Responsive">
+                <ResponsivePairs
+                  bg={project.hero.bg}
+                  fg={project.hero.fg}
+                  accent={project.hero.accent}
+                  pairs={[
+                    {
+                      label: "Signup",
+                      desktop: "/projects/fittra-clinic/signup.jpg",
+                      mobile: "/projects/fittra-clinic/signup-mobile.jpg",
+                    },
+                    {
+                      label: "Profile",
+                      desktop: "/projects/fittra-clinic/profile.jpg",
+                      mobile: "/projects/fittra-clinic/profile-mobile.jpg",
+                    },
+                    {
+                      label: "Calendar",
+                      desktop: "/projects/fittra-clinic/calendar.jpg",
+                      mobile: "/projects/fittra-clinic/calendar-mobile.jpg",
+                    },
+                  ]}
+                />
+              </CaseSection>
+            )}
           </>
         ) : (
           <CaseSection label="Screens">
