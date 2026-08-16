@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s · Ahmed Elkfrawy",
   },
   description:
-    "Ahmed Elkfrawy is a UI/UX designer in Cairo with 3+ years crafting digital experiences across e-commerce, healthcare, education and fintech. Available for remote work.",
+    "Ahmed Elkfrawy is a UI/UX designer in Cairo — user experience (UX), user interface (UI) and product design across healthcare, e-commerce, education and fintech. Open to freelance and remote work.",
   metadataBase: new URL("https://ahmedelkfrawy.com"),
   applicationName: "Ahmed Elkfrawy Portfolio",
   authors: [{ name: "Ahmed Elkfrawy", url: "https://ahmedelkfrawy.com" }],
@@ -41,14 +41,21 @@ export const metadata: Metadata = {
   keywords: [
     "Ahmed Elkfrawy",
     "UI/UX designer",
-    "UI designer Cairo",
-    "UX designer Egypt",
+    "UI/UX designer Cairo",
+    "UX designer",
+    "UX designer Cairo",
+    "user experience designer",
+    "UI designer",
+    "user interface designer",
     "product designer",
+    "product designer Cairo",
+    "freelance UI/UX designer",
+    "Arabic UI designer",
+    "RTL designer",
     "web design",
     "mobile app design",
-    "Arabic UI design",
+    "healthcare app designer",
     "portfolio",
-    "freelance UI/UX designer",
   ],
   category: "design",
   alternates: {
@@ -103,7 +110,22 @@ const personLd = {
     familyName: "Elkfrawy",
     url: "https://ahmedelkfrawy.com",
     image: "https://ahmedelkfrawy.com/ahmed.jpg",
-    jobTitle: "UI/UX Designer",
+    jobTitle: [
+      "UI/UX Designer",
+      "User Experience (UX) Designer",
+      "User Interface (UI) Designer",
+      "Product Designer",
+    ],
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "UI/UX Designer",
+      occupationLocation: {
+        "@type": "City",
+        name: "Cairo, Egypt",
+      },
+      skills:
+        "User experience design, user interface design, product design, design systems, prototyping, user research, Arabic-first / RTL design",
+    },
     description:
       "UI/UX designer with 3+ years crafting digital experiences across e-commerce, healthcare, education and fintech.",
     email: "mailto:info@ahmedelkfrawy.com",

@@ -79,9 +79,10 @@ export default function AboutPreview() {
           </h2>
           <div className="space-y-5 text-lg md:text-xl text-[var(--color-fg-muted)] leading-relaxed max-w-2xl">
             <p>
-              I&rsquo;m Ahmed. For three years I&rsquo;ve been turning messy
-              research into interfaces that <span className="text-[var(--color-fg)]">move the
-              needle</span>.
+              I&rsquo;m Ahmed, a <span className="text-[var(--color-fg)]">UI/UX
+              and product designer</span>. For three years I&rsquo;ve been turning
+              messy user research into interfaces that{" "}
+              <span className="text-[var(--color-fg)]">move the needle</span>.
             </p>
             <p>
               At <span className="text-[var(--color-fg)] font-medium">MTN</span>, that
