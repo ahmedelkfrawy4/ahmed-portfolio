@@ -124,7 +124,12 @@ const personLd = {
       "Prototyping",
       "User Research",
     ],
-    sameAs: ["https://www.linkedin.com/in/ahmedelkfrawy"],
+    sameAs: [
+      "https://www.linkedin.com/in/ahmedelkfrawy",
+      "https://www.behance.net/ahmedelkfrawy",
+      "https://dribbble.com/AhmedElkfrawy",
+      "https://www.instagram.com/aelkfrawy/",
+    ],
   },
 };
 
