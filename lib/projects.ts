@@ -541,6 +541,66 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "hiring-platform",
+    n: "08",
+    name: "I Sira",
+    client: "Hiring Platform · B2B + B2C",
+    sector: "HR Tech · Recruitment",
+    year: "2026",
+    status: "completed",
+    services: [
+      "UI/UX Design",
+      "Mobile App Design",
+      "Voice-first UX",
+      "Design System",
+    ],
+    tagline: "Get discovered by great companies — build your profile with your voice.",
+    overview:
+      "I Sira is a hiring platform that connects candidates with companies. This is the candidate mobile app — and its hook is voice. Instead of filling endless forms, you record a 30–60 second voice intro and the app builds your profile automatically from what you say. You confirm the details across a few quick steps, add your CV and documents, then publish and get discovered by great companies. The wider platform also spans a company-facing web app and a control dashboard.",
+    problem:
+      "Job-seeking starts with the most tedious step imaginable — retyping your whole life into forms, on a phone. Candidates drop off before they are ever seen, and the profiles that do get built come out thin and generic. The challenge was to make building a rich, human profile feel effortless — and to make candidates feel like people, not rows in a database.",
+    solution:
+      "A voice-first onboarding. You talk for under a minute; the app transcribes and structures a full profile — who you are, your experience, skills and preferences — which you simply confirm and refine. Documents and a review-and-publish step round it out. A calm, confident green system with big targets and clear progress keeps the whole flow feeling quick and human.",
+    process: [
+      "Mapped the candidate journey — from first open to a published, discoverable profile",
+      "Designed the signature voice-first builder (record → AI-built profile → confirm)",
+      "Broke profile-building into short confirm steps — personal, background, skills, preferences",
+      "Documents, review-and-publish, and the finished profile home",
+      "High-fidelity UI on a reusable mobile design system (8pt grid, UI kit)",
+      "Handoff with components, tokens and screen notes",
+    ],
+    outcomes: [
+      "Voice-first onboarding",
+      "Auto-built candidate profile",
+      "Mobile design system",
+      "B2B + B2C platform",
+    ],
+    hero: {
+      bg: "#2E4A2C",
+      fg: "#EEF3EA",
+      accent: "#9DBE93",
+      image: "/projects/hiring-platform/cover.jpg",
+      imageAspect: "16 / 9",
+    },
+    mockups: [
+      { label: "Splash", type: "phone", image: "/projects/hiring-platform/splash.jpg" },
+      { label: "Sign up", type: "phone", image: "/projects/hiring-platform/signup.jpg" },
+      { label: "Record voice intro", type: "phone", image: "/projects/hiring-platform/record-voice.jpg" },
+      { label: "Profile built from voice", type: "phone", image: "/projects/hiring-platform/profile-built.jpg" },
+      { label: "Confirm skills", type: "phone", image: "/projects/hiring-platform/confirm-skills.jpg" },
+      { label: "Confirm preferences", type: "phone", image: "/projects/hiring-platform/confirm-preferences.jpg" },
+      { label: "Documents", type: "phone", image: "/projects/hiring-platform/documents.jpg" },
+      { label: "Review & publish", type: "phone", image: "/projects/hiring-platform/review-publish.jpg" },
+      { label: "Profile home", type: "phone", image: "/projects/hiring-platform/profile-home.jpg" },
+      {
+        label: "+ 5 more screens",
+        type: "phone",
+        image: "/projects/hiring-platform/profile-home.jpg",
+        moreCount: 5,
+      },
+    ],
+  },
 ];
 
 export function getProject(slug: string) {
