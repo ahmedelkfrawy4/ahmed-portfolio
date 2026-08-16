@@ -15,6 +15,9 @@ import ProblemList from "@/components/ProblemList";
 import OutcomeBlock from "@/components/OutcomeBlock";
 import ResponsivePairs from "@/components/ResponsivePairs";
 import ArtifactsBlock from "@/components/ArtifactsBlock";
+import JsonLd from "@/components/JsonLd";
+
+const SITE = "https://ahmedelkfrawy.com";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -28,9 +31,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) return { title: "Not found" };
+  const url = `/projects/${slug}`;
+  const title = `${p.name} — ${p.sector} Case Study`;
   return {
-    title: p.name,
+    title,
     description: p.tagline,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: `${p.name} · Ahmed Elkfrawy`,
+      description: p.tagline,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.name} · Ahmed Elkfrawy`,
+      description: p.tagline,
+    },
   };
 }
 
@@ -59,6 +76,43 @@ export default async function ProjectPage({
   const prev = visible[(baseIdx - 1 + visible.length) % visible.length];
   const next = visible[(baseIdx + 1) % visible.length];
 
+  const projectUrl = `${SITE}/projects/${project.slug}`;
+  const creativeWorkLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.name,
+    headline: project.tagline,
+    description: project.overview,
+    url: projectUrl,
+    ...(project.hero.image
+      ? { image: `${SITE}${project.hero.image}` }
+      : {}),
+    creator: { "@id": `${SITE}/#person` },
+    author: { "@id": `${SITE}/#person` },
+    about: project.sector,
+    keywords: project.services.join(", "),
+    dateCreated: project.year,
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${SITE}/#projects`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.name,
+        item: projectUrl,
+      },
+    ],
+  };
+
   const overviewLines = splitToSentences(project.overview);
   const problemPoints = splitToSentences(project.problem);
   const solutionPoints = splitToSentences(project.solution);
@@ -69,6 +123,8 @@ export default async function ProjectPage({
 
   return (
     <>
+      <JsonLd data={creativeWorkLd} />
+      <JsonLd data={breadcrumbLd} />
       <Nav />
       <main id="main-content" className="relative">
         {project.slug === "baba-guide" && <CaseMotifs />}
