@@ -481,6 +481,66 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "edu-xspace",
+    n: "07",
+    name: "Edu-Xspace",
+    client: "E-learning Marketplace",
+    sector: "EdTech · Mobile App",
+    year: "2026",
+    status: "completed",
+    services: [
+      "UX Research",
+      "Mobile App Design",
+      "Design System",
+      "EN + Arabic (RTL)",
+    ],
+    tagline: "Learn anything, anytime, anywhere — teachers publish, students learn.",
+    overview:
+      "Edu-Xspace is a two-sided learning marketplace built as one mobile app. Students browse courses, books and booklets, buy them, then watch lessons and read PDFs in-app or book live sessions. Teachers get a full studio to create courses and books, go live, manage their catalog and track earnings. Every flow is designed twice — English and Arabic (RTL) — on one shared design system spanning 50+ screens.",
+    problem:
+      "Two very different audiences share one app. Learners want to discover and start fast; instructors need real tools to publish content and get paid. The challenge was to serve both without the product splitting into two disjointed apps — and to deliver full Arabic / RTL parity, not an afterthought.",
+    solution:
+      "One design system, two clear modes. A calm student store — browse, course and book detail, cart, checkout, lesson player and PDF reader, profile — sits alongside a teacher studio for creating courses and books, going live, managing the catalog, and tracking earnings and reviews. Shared components, a consistent bottom nav and a confident violet brand hold it together, mirrored fully for Arabic RTL.",
+    process: [
+      "Mapped both journeys — student (discover → buy → learn) and teacher (create → publish → earn)",
+      "Authentication with a role split for students and teachers",
+      "Information architecture for the store, the player/reader and the teacher studio",
+      "Wireframes → high-fidelity UI on a single shared design system",
+      "Built full English + Arabic (RTL) parity across every screen",
+      "Handoff with components, tokens and screen-by-screen notes",
+    ],
+    outcomes: [
+      "50+ screens",
+      "Student + teacher modes",
+      "EN + Arabic (RTL)",
+      "Full design system",
+    ],
+    hero: {
+      bg: "#6D28D9",
+      fg: "#F5F1FF",
+      accent: "#C4B5FD",
+      image: "/projects/edu-xspace/cover.jpg",
+      imageAspect: "16 / 9",
+    },
+    mockups: [
+      { label: "Onboarding", type: "phone", image: "/projects/edu-xspace/onboarding.jpg" },
+      { label: "Home", type: "phone", image: "/projects/edu-xspace/home.jpg" },
+      { label: "Course detail", type: "phone", image: "/projects/edu-xspace/course-detail.jpg" },
+      { label: "Lesson player", type: "phone", image: "/projects/edu-xspace/player.jpg" },
+      { label: "Checkout", type: "phone", image: "/projects/edu-xspace/checkout.jpg" },
+      { label: "Profile", type: "phone", image: "/projects/edu-xspace/profile.jpg" },
+      { label: "Teacher dashboard", type: "phone", image: "/projects/edu-xspace/teacher-dashboard.jpg" },
+      { label: "Create course", type: "phone", image: "/projects/edu-xspace/create-course.jpg" },
+      { label: "Teacher earnings", type: "phone", image: "/projects/edu-xspace/earnings.jpg" },
+      {
+        label: "+ 40 more screens",
+        type: "phone",
+        image: "/projects/edu-xspace/home.jpg",
+        moreCount: 40,
+      },
+    ],
+  },
 ];
 
 export function getProject(slug: string) {
