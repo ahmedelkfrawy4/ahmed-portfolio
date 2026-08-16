@@ -67,6 +67,12 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="grain" suppressHydrationWarning>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[300] focus:rounded-full focus:bg-[var(--color-fg)] focus:px-5 focus:py-2.5 focus:font-medium focus:text-[var(--color-bg)]"
+        >
+          Skip to content
+        </a>
         <MotionProvider>
           <SmoothScroll />
           <Cursor />

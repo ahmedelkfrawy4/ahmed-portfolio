@@ -70,7 +70,7 @@ export default async function ProjectPage({
   return (
     <>
       <Nav />
-      <main className="relative">
+      <main id="main-content" className="relative">
         {project.slug === "baba-guide" && <CaseMotifs />}
         {/* Back link */}
         <div className="px-5 md:px-8 pt-28 md:pt-32">

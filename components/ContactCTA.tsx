@@ -81,7 +81,7 @@ export default function ContactCTA() {
                 <div className="display text-xl md:text-2xl">{EMAIL}</div>
               </div>
             </div>
-            <span className="mono flex items-center gap-2">
+            <span aria-live="polite" className="mono flex items-center gap-2">
               {copied ? (
                 <>
                   <Check className="size-4" /> copied

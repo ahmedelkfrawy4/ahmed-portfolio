@@ -66,7 +66,7 @@ export default function AboutPreview() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden px-5 md:px-8 py-24 md:py-32 border-t border-[var(--color-border)]"
+      className="relative overflow-hidden px-5 md:px-8 pt-24 md:pt-32 pb-16 md:pb-20 border-t border-[var(--color-border)]"
     >
       <div className="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
         {/* Narrative */}
@@ -106,7 +106,7 @@ export default function AboutPreview() {
         </div>
 
         {/* Polaroids — stacked fan on desktop, scatter grid on mobile */}
-        <div className="relative lg:col-span-5 grid grid-cols-2 gap-4 sm:gap-5 lg:block lg:min-h-[760px]">
+        <div className="relative lg:col-span-5 grid grid-cols-2 gap-4 sm:gap-5 lg:block lg:min-h-[680px]">
           {polaroids.map((p, i) => (
             <motion.div
               key={i}

@@ -69,6 +69,7 @@ export default function ContactForm() {
   if (status === "sent") {
     return (
       <motion.div
+        role="status"
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         className="flex flex-col items-start gap-3 rounded-[28px] border-2 border-[var(--color-plum)] bg-[var(--color-cream)]/70 p-8 md:p-10"
@@ -107,6 +108,7 @@ export default function ContactForm() {
             name="name"
             type="text"
             required
+            autoComplete="name"
             placeholder="Jane Doe"
             data-cursor="hover"
             className={fieldClass}
@@ -118,6 +120,8 @@ export default function ContactForm() {
             name="email"
             type="email"
             required
+            autoComplete="email"
+            inputMode="email"
             placeholder="jane@studio.com"
             data-cursor="hover"
             className={fieldClass}
@@ -157,7 +161,7 @@ export default function ContactForm() {
         </button>
 
         {status === "error" && (
-          <span className="mono text-red-700/90">{error}</span>
+          <span role="alert" className="mono text-red-700/90">{error}</span>
         )}
       </div>
     </form>

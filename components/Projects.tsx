@@ -101,7 +101,7 @@ function ProjectCard({
       <Link
         href={`/projects/${p.slug}`}
         data-cursor="hover"
-        className="group block h-full focus:outline-none"
+        className="group block h-full rounded-[28px]"
       >
         <motion.article
           onMouseMove={onMove}

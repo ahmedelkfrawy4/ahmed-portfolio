@@ -65,7 +65,7 @@ export default function Footer() {
           <span className="italic text-[var(--color-ochre)]">.</span>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-8 border-t border-[var(--color-cream)]/10 text-xs text-[var(--color-cream)]/60">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-8 border-t border-[var(--color-cream)]/10 text-xs text-[var(--color-cream)]/70">
           <div>© {new Date().getFullYear()} Ahmed Elkfrawy. Designed with love in Cairo.</div>
           <div>Type set in Fraunces, Inter, and Caveat.</div>
         </div>

@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useMotionValue, useTransform } from "motion/react";
-import { ExternalLink, Lock, Clock } from "lucide-react";
+import { ExternalLink, Lock, Clock, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 type ProjectLink = {
   label: string;
@@ -19,6 +20,7 @@ type Project = {
   solution: string;
   metrics: string[];
   links?: ProjectLink[];
+  caseStudy?: string;
   bg: string;
   fg: string;
   accent: string;
@@ -65,6 +67,7 @@ const projects: Project[] = [
         href: "https://play.google.com/store/apps/details?id=com.brandiiq.app",
       },
     ],
+    caseStudy: "brandi",
     bg: "#F5B841",
     fg: "#2B1B3D",
     accent: "#2B1B3D",
@@ -81,6 +84,7 @@ const projects: Project[] = [
       "Contributed to the product launch with flows, UI, and responsive breakpoints. Kept the same language across surfaces.",
     metrics: ["0→1 launch", "Web + mobile", "Responsive system"],
     links: [{ label: "injazedu.co", href: "https://injazedu.co/" }],
+    caseStudy: "injaz",
     bg: "#D4FF3A",
     fg: "#2B1B3D",
     accent: "#2B1B3D",
@@ -101,6 +105,7 @@ const projects: Project[] = [
       { label: "OVR system", href: null },
       { label: "patient-support app", href: null },
     ],
+    caseStudy: "magdi-yacoub",
     bg: "#FFD6C4",
     fg: "#2B1B3D",
     accent: "#2B1B3D",
@@ -315,15 +320,27 @@ function TiltCard({ p }: { p: Project }) {
 
       <div className="flex items-center justify-between">
         <span className="mono opacity-70">{p.year}</span>
-        <span className="mono opacity-70">
-          {p.links?.some((l) => l.href)
-            ? "live links above"
-            : p.links?.some((l) => l.status === "in-progress")
-            ? "shipping soon"
-            : p.links?.length
-            ? "internal work"
-            : "role on request"}
-        </span>
+        {p.caseStudy ? (
+          <Link
+            href={`/projects/${p.caseStudy}`}
+            data-cursor="hover"
+            className="mono inline-flex items-center gap-1 link-underline"
+            style={{ color: p.fg }}
+          >
+            read the case study
+            <ArrowUpRight className="size-3.5" />
+          </Link>
+        ) : (
+          <span className="mono opacity-70">
+            {p.links?.some((l) => l.href)
+              ? "live links above"
+              : p.links?.some((l) => l.status === "in-progress")
+              ? "shipping soon"
+              : p.links?.length
+              ? "internal work"
+              : "role on request"}
+          </span>
+        )}
       </div>
     </motion.article>
   );

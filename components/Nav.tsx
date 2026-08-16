@@ -22,8 +22,13 @@ export default function Nav() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    if (open) window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
@@ -75,6 +80,8 @@ export default function Nav() {
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"
+              aria-expanded={open}
+              aria-haspopup="dialog"
               className="md:hidden grid h-9 w-9 place-items-center rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-fg)]"
             >
               <Menu className="size-4" />
@@ -97,6 +104,9 @@ export default function Nav() {
               onClick={() => setOpen(false)}
             />
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Site menu"
               initial={{ y: "-100%" }}
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}

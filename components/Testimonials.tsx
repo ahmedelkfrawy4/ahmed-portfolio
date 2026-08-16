@@ -191,7 +191,7 @@ export default function Testimonials() {
                       {p.name}
                       <Linkedin className="size-3.5 opacity-70" />
                     </a>
-                    <span className="block text-xs text-[var(--color-cream)]/55 mt-0.5">
+                    <span className="block text-xs text-[var(--color-cream)]/70 mt-0.5">
                       {p.role} · {p.relation}
                     </span>
                   </span>
