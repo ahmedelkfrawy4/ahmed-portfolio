@@ -190,6 +190,17 @@ export default function RootLayout({
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "fd9e3f4aff7c4350b5444775b18b7421"}'
         />
+        <Script
+          id="ga4-src"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-JPVQSZN8FZ"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JPVQSZN8FZ');`}
+        </Script>
       </body>
     </html>
   );
