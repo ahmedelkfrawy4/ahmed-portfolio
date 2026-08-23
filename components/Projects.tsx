@@ -248,10 +248,10 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Cards grid — Magdi & Injaz hidden from grid for now (detail pages still live) */}
+        {/* Cards grid — Magdi hidden from grid for now (detail page still live) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {projects
-            .filter((p) => p.slug !== "magdi-yacoub" && p.slug !== "injaz")
+            .filter((p) => p.slug !== "magdi-yacoub")
             .map((p, i) => (
               <ProjectCard key={p.slug} p={p} i={i} />
             ))}
