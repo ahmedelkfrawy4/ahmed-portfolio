@@ -252,33 +252,78 @@ export const projects: Project[] = [
   {
     slug: "injaz",
     n: "04",
-    name: "Injaz",
-    client: "Sectors",
-    sector: "EdTech",
+    name: "Injaz Educational Platform",
+    client: "Injaz — منصة إنجاز التعليمية",
+    sector: "EdTech · Exam Prep",
     year: "2021 — 2022",
-    status: "live",
-    services: ["UI/UX Design", "Web + Mobile", "Design System"],
-    tagline: "Where students and tutors finally met on the same page.",
-    overview:
-      "An online teaching platform built from scratch — the brief was: students need to find tutors fast; tutors need to teach without fighting the tool.",
-    problem:
-      "Two audiences, two surfaces (web + mobile), one product. Each side needed its own flow, but the product needed to feel like one thing.",
-    solution:
-      "Designed parallel student / tutor flows on shared visual foundations. Web for tutors (deep tooling), mobile-first for students (browse + book).",
-    process: [
-      "Mapped both audiences as separate journeys",
-      "Defined the shared design language across web + mobile",
-      "Wireframed the booking + class flow end-to-end",
-      "High-fidelity UI with handoff specs",
-      "Supported the engineering launch",
+    status: "completed",
+    services: [
+      "UI/UX Design",
+      "Web + Mobile",
+      "Arabic-first / RTL",
+      "Design System",
     ],
-    outcomes: ["0→1 launch", "Web + mobile", "Responsive system"],
+    tagline:
+      "Intensive exam prep for Saudi students and teachers — designed Arabic-first.",
+    overview:
+      "Injaz (منصة إنجاز التعليمية) is a Saudi exam-preparation platform that helps students and teachers pass the Kingdom's standardized tests — Qudurat, Tahsili, STEP, IELTS and the professional teaching licence. Behind 30+ years of teaching experience sit thousands of video lessons, compiled notes and practice exams. I designed the full Arabic-first / RTL experience across web and mobile — from the landing page and course catalogue to sign-up, subscription and the learner's library.",
+    problem:
+      "A huge library of courses, notes and exams had no home that felt as organised as the material. Learners needed to find the right track fast — across many different exams — understand what each course covered, subscribe with confidence and study on any device. All of it Arabic-first, RTL, and reassuring for students who are often anxious before a high-stakes test.",
+    solution:
+      "Designed a clear, category-first platform. The landing page leads with the exam tracks — Qudurat, Tahsili, IELTS, STEP, the professional licence — so learners self-select in seconds. Course cards show price, seats and enrolment at a glance. A calm split-screen sign-in, a step-by-step joining guide and social proof from real subscribers lower the barrier to starting. One confident purple-and-gold design system threads through web and mobile.",
+    process: [
+      "Mapped the exam tracks and course catalogue into a clear content model",
+      "Information architecture for the landing page, catalogue, course and account",
+      "Arabic-first / RTL wireframes across web + mobile",
+      "High-fidelity UI in a purple-and-gold brand system",
+      "Sign-up, subscription and joining flows designed end-to-end",
+      "Supported the engineering team through launch",
+    ],
+    outcomes: [
+      "Live web + mobile",
+      "Arabic-first / RTL",
+      "Multi-exam catalogue",
+      "Full design system",
+    ],
     liveLinks: [{ label: "injazedu.co", href: "https://injazedu.co/" }],
-    hero: { bg: "#D4FF3A", fg: "#2B1B3D", accent: "#2B1B3D" },
+    hero: {
+      bg: "#4B2A87",
+      fg: "#F6EFFF",
+      accent: "#F6B93B",
+      image: "/projects/injaz/cover.jpg",
+      imageAspect: "16 / 9",
+    },
     mockups: [
-      { label: "Student home", type: "browser" },
-      { label: "Tutor dashboard", type: "browser" },
-      { label: "Mobile booking", type: "phone" },
+      {
+        label: "Course catalogue",
+        type: "browser",
+        image: "/projects/injaz/courses.jpg",
+        aspect: "1556 / 790",
+      },
+      {
+        label: "Exam tracks",
+        type: "browser",
+        image: "/projects/injaz/categories.jpg",
+        aspect: "1556 / 790",
+      },
+      {
+        label: "Sign in",
+        type: "browser",
+        image: "/projects/injaz/login.jpg",
+        aspect: "1556 / 790",
+      },
+      {
+        label: "How to join",
+        type: "browser",
+        image: "/projects/injaz/steps.jpg",
+        aspect: "1556 / 790",
+      },
+      {
+        label: "Trainers & testimonials",
+        type: "browser",
+        image: "/projects/injaz/trainers.jpg",
+        aspect: "1556 / 790",
+      },
     ],
   },
   {
