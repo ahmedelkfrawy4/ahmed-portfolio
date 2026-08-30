@@ -46,7 +46,7 @@ const polaroids: Polaroid[] = [
   },
   {
     type: "text",
-    label: "3+ years · 6 teams · 4 sectors.",
+    label: "5+ years · 6 teams · 4 sectors.",
     caption: "track record",
     r: 7,
     bg: "#D4FF3A",
@@ -80,7 +80,7 @@ export default function AboutPreview() {
           <div className="space-y-5 text-lg md:text-xl text-[var(--color-fg-muted)] leading-relaxed max-w-2xl">
             <p>
               I&rsquo;m Ahmed, a <span className="text-[var(--color-fg)]">UI/UX
-              and product designer</span>. For three years I&rsquo;ve been turning
+              and product designer</span>. For five years I&rsquo;ve been turning
               messy user research into interfaces that{" "}
               <span className="text-[var(--color-fg)]">move the needle</span>.
             </p>

@@ -9,7 +9,7 @@ import ShinyText from "./ShinyText";
 const stats = [
   { value: "+30%", label: "sales lift · MTN" },
   { value: "94%", label: "user satisfaction" },
-  { value: "3+", label: "years designing" },
+  { value: "5+", label: "years designing" },
   { value: "6", label: "teams shipped with" },
   { value: "4", label: "sectors covered" },
   { value: "7", label: "stations on the train" },

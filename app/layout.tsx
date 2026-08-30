@@ -79,13 +79,13 @@ export const metadata: Metadata = {
     url: "https://ahmedelkfrawy.com",
     title: "Ahmed Elkfrawy — UI/UX Designer in Cairo",
     description:
-      "UI/UX Designer with 3+ years crafting digital experiences across e-commerce, healthcare, education and fintech. Cairo · open to remote.",
+      "UI/UX Designer with 5+ years crafting digital experiences across e-commerce, healthcare, education and fintech. Cairo · open to remote.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Ahmed Elkfrawy — UI/UX Designer in Cairo",
     description:
-      "UI/UX Designer with 3+ years crafting digital experiences across e-commerce, healthcare, education and fintech. Cairo · open to remote.",
+      "UI/UX Designer with 5+ years crafting digital experiences across e-commerce, healthcare, education and fintech. Cairo · open to remote.",
   },
 };
 
@@ -127,7 +127,7 @@ const personLd = {
         "User experience design, user interface design, product design, design systems, prototyping, user research, Arabic-first / RTL design",
     },
     description:
-      "UI/UX designer with 3+ years crafting digital experiences across e-commerce, healthcare, education and fintech.",
+      "UI/UX designer with 5+ years crafting digital experiences across e-commerce, healthcare, education and fintech.",
     email: "mailto:info@ahmedelkfrawy.com",
     telephone: "+201093839772",
     address: {

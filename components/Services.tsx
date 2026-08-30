@@ -223,7 +223,7 @@ export default function Services() {
           </div>
           <div className="lg:col-span-5 flex flex-col gap-3">
             <p className="text-[var(--color-fg-muted)] max-w-md">
-              Four zones, sharpened over three years across telecom,
+              Four zones, sharpened over five years across telecom,
               healthcare, e-commerce and EdTech. Each chip is draggable —
               <span className="hand text-2xl text-[var(--color-fg)]">
                 {" "}fling one ↗

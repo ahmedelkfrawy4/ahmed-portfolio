@@ -273,7 +273,7 @@ export default function Hero() {
 
           <p className="mt-6 max-w-xl text-base md:text-lg text-[var(--color-fg-muted)] leading-relaxed">
             I&rsquo;m <span className="text-[var(--color-fg)] font-medium">Ahmed Elkfrawy</span>
-            &nbsp;— UI/UX designer with 3+ years shipping interfaces across
+            &nbsp;— UI/UX designer with 5+ years shipping interfaces across
             e-commerce, healthcare, education and fintech. Recent work at{" "}
             <span className="text-[var(--color-fg)] font-medium">MTN</span> drove
             a <span className="text-[var(--color-fg)] font-medium">30%</span> sales lift
