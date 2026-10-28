@@ -49,7 +49,7 @@ const projects: Project[] = [
     bg: "#2B1B3D",
     fg: "#FBF7F0",
     accent: "#F5B841",
-    year: "2024 – now",
+    year: "2024 – 2025",
   },
   {
     n: "02",
@@ -57,7 +57,7 @@ const projects: Project[] = [
     name: "Brandi",
     pitch: "Baghdad to your basket.",
     problem:
-      "Fragmented shopping experience — carts abandoned, stakeholders misaligned, no clear research loop.",
+      "Global stores don't ship to Iraq, few people pay by card, and local shopping apps are cluttered and hard to trust.",
     solution:
       "Full UX process for a mobile-first storefront: stakeholder interviews, competitor analysis, personas, and iteration with the build team.",
     metrics: ["Full UX cycle", "Mobile-first", "Live on Play Store"],
@@ -99,7 +99,7 @@ const projects: Project[] = [
       "Patients in crisis navigating a broken complaint management system. Staff buried in paperwork.",
     solution:
       "Redesigned the complaint management system, OVR system, and patient-support mobile interface. Calm, accessible, human.",
-    metrics: ["3 products shipped", "Patient-first flows", "Pro-bono impact"],
+    metrics: ["3 products shipped", "Patient-first flows", "Internship"],
     links: [
       { label: "complaint management", href: null },
       { label: "OVR system", href: null },
@@ -117,7 +117,7 @@ const projects: Project[] = [
     name: "Roma MPH",
     pitch: "Three sectors, one design language.",
     problem:
-      "Multi-sector platforms — each with its own audience, each needing to feel coherent.",
+      "MTN's software & media arm, spun off as its own company — multi-sector platforms, each needing to feel coherent.",
     solution:
       "Executed the full design cycle from research to UI delivery across e-learning, e-commerce, and finance products. Designed Fittra Center — a global dashboard to control all Fittra platforms — and currently shipping the MTN Wallet feature.",
     metrics: ["3 sectors", "Full cycle", "Global dashboard"],

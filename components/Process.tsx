@@ -31,7 +31,7 @@ const stations = [
   {
     year: "2022 – 2023",
     where: "Magdi Yacoub Heart Foundation",
-    role: "UI/UX Designer · Aswan",
+    role: "UI/UX Design Intern · Aswan",
     outcomes: [
       "Complaint management redesign",
       "OVR system",
@@ -53,7 +53,7 @@ const stations = [
     bg: "#F5B841",
   },
   {
-    year: "2024 – now",
+    year: "2024 – 2025",
     where: "MTN",
     role: "UI/UX Designer · Cairo",
     outcomes: [
@@ -80,7 +80,7 @@ const stations = [
   {
     year: "Feb 2025 – now",
     where: "Roma MPH",
-    role: "UX/UI Designer · Cairo",
+    role: "UX/UI Designer · Cairo · MTN group",
     outcomes: [
       "E-learning, e-commerce, fintech",
       "Full cycle: research → UI",

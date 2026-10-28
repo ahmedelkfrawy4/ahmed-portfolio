@@ -145,7 +145,7 @@ export const projects: Project[] = [
       "Iterated wireframes with foundation stakeholders, then high-fidelity",
       "Hand-off with usage guidelines for the in-house team",
     ],
-    outcomes: ["3 products shipped", "Patient-first flows", "Pro-bono impact"],
+    outcomes: ["3 products shipped", "Patient-first flows", "Internship"],
     hero: { bg: "#FFD6C4", fg: "#2B1B3D", accent: "#2B1B3D" },
     mockups: [
       { label: "Complaint flow", type: "phone" },

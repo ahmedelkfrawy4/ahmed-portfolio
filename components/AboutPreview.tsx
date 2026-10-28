@@ -88,7 +88,7 @@ export default function AboutPreview() {
               At <span className="text-[var(--color-fg)] font-medium">MTN</span>, that
               meant a platform that lifted sales <span className="text-[var(--color-fg)] font-medium">30%</span>{" "}
               and held a <span className="text-[var(--color-fg)] font-medium">94%</span>{" "}
-              satisfaction score. At the{" "}
+              satisfaction score in in-app surveys. At the{" "}
               <span className="text-[var(--color-fg)] font-medium">Magdi Yacoub Heart Foundation</span>,
               it meant rebuilding a complaint system for patients in crisis.
             </p>

@@ -275,7 +275,8 @@ export default function Hero() {
             I&rsquo;m <span className="text-[var(--color-fg)] font-medium">Ahmed Elkfrawy</span>
             &nbsp;— UI/UX designer with 5+ years shipping interfaces across
             e-commerce, healthcare, education and fintech. Recent work at{" "}
-            <span className="text-[var(--color-fg)] font-medium">MTN</span> drove
+            <span className="text-[var(--color-fg)] font-medium">MTN</span>, a training
+            &amp; self-improvement group, drove
             a <span className="text-[var(--color-fg)] font-medium">30%</span> sales lift
             with <span className="text-[var(--color-fg)] font-medium">94%</span> user satisfaction.
           </p>

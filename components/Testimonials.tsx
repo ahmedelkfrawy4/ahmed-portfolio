@@ -8,11 +8,11 @@ import ShinyText from "./ShinyText";
 
 const stats = [
   { value: "+30%", label: "sales lift · MTN" },
-  { value: "94%", label: "user satisfaction" },
+  { value: "94%", label: "satisfaction · in-app surveys" },
+  { value: "6", label: "products live · MTN group" },
+  { value: "5", label: "platforms · one design system" },
+  { value: "3", label: "healthcare products shipped" },
   { value: "5+", label: "years designing" },
-  { value: "6", label: "teams shipped with" },
-  { value: "4", label: "sectors covered" },
-  { value: "7", label: "stations on the train" },
 ];
 
 type Praise = {
