@@ -77,6 +77,50 @@ const projects: Project[] = [
   {
     n: "03",
     sector: "EdTech",
+    name: "Edu-Xspace",
+    pitch: "Learn anything, anytime, anywhere.",
+    problem:
+      "One app for two very different users: students who want to discover and start fast, and teachers who need real tools to publish content and get paid.",
+    solution:
+      "A student store, lesson player and PDF reader alongside a teacher studio for creating courses and books, going live and tracking earnings — on one design system, in English and Arabic (RTL).",
+    metrics: ["50+ screens", "Student + teacher modes", "EN + Arabic (RTL)"],
+    links: [
+      {
+        label: "Behance case study",
+        href: "https://www.behance.net/gallery/257770855/Edu-Xspace-E-learning-Marketplace-App",
+      },
+    ],
+    caseStudy: "edu-xspace",
+    bg: "#6D28D9",
+    fg: "#F5F1FF",
+    accent: "#C4B5FD",
+    year: "2026",
+  },
+  {
+    n: "04",
+    sector: "HR Tech",
+    name: "ISiRA",
+    pitch: "Hiring that listens.",
+    problem:
+      "Most hiring platforms assume you can type and write a CV — shutting out skilled workers — while companies waste weeks sourcing people who don't fit.",
+    solution:
+      "A voice-first profile builder where candidates just talk and the AI builds the profile, a consent step that keeps profiles hidden until they opt in, and a company dashboard: filter, live count, buy, contact.",
+    metrics: ["Voice-first onboarding", "B2B + B2C", "Web + mobile"],
+    links: [
+      {
+        label: "Behance case study",
+        href: "https://www.behance.net/gallery/257972955/ISiRA-Voice-First-Hiring-Platform-UXUI-Case-Study",
+      },
+    ],
+    caseStudy: "hiring-platform",
+    bg: "#1C2A19",
+    fg: "#EEF3EA",
+    accent: "#C6F26B",
+    year: "2026",
+  },
+  {
+    n: "05",
+    sector: "EdTech",
     name: "Injaz (with Sectors)",
     pitch: "Where students and tutors finally met on the same page.",
     problem:
@@ -92,7 +136,7 @@ const projects: Project[] = [
     year: "2021 – 2022",
   },
   {
-    n: "04",
+    n: "06",
     sector: "Healthcare",
     name: "Magdi Yacoub Heart Foundation",
     pitch: "Redesigning care — one complaint at a time.",
@@ -113,7 +157,7 @@ const projects: Project[] = [
     year: "2022 – 2023",
   },
   {
-    n: "05",
+    n: "07",
     sector: "Multi-sector",
     name: "Roma MPH",
     pitch: "Three sectors, one design language.",
@@ -140,7 +184,7 @@ const projects: Project[] = [
     year: "2025 – now",
   },
   {
-    n: "06",
+    n: "08",
     sector: "Freelance",
     name: "The Freelance Playground",
     pitch: "Healthcare, tourism, education, fashion — on tap.",
