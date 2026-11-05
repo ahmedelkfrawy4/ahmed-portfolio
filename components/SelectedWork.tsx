@@ -50,6 +50,7 @@ const projects: Project[] = [
     fg: "#FBF7F0",
     accent: "#F5B841",
     year: "2024 – 2025",
+    caseStudy: "mtn-payment",
   },
   {
     n: "02",
