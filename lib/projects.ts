@@ -566,7 +566,7 @@ export const projects: Project[] = [
       fg: "#F5F1FF",
       accent: "#C4B5FD",
       image: "/projects/edu-xspace/cover.jpg",
-      imageAspect: "16 / 9",
+      imageAspect: "1600 / 1126",
     },
     mockups: [
       { label: "Onboarding", type: "phone", image: "/projects/edu-xspace/onboarding.jpg" },
@@ -589,7 +589,7 @@ export const projects: Project[] = [
   {
     slug: "hiring-platform",
     n: "08",
-    name: "I Sira",
+    name: "ISiRA",
     client: "Hiring Platform · B2B + B2C",
     sector: "HR Tech · Recruitment",
     year: "2026",
@@ -602,16 +602,17 @@ export const projects: Project[] = [
     ],
     tagline: "Get discovered by great companies — build your profile with your voice.",
     overview:
-      "I Sira is a hiring platform that connects candidates with companies. This is the candidate mobile app — and its hook is voice. Instead of filling endless forms, you record a 30–60 second voice intro and the app builds your profile automatically from what you say. You confirm the details across a few quick steps, add your CV and documents, then publish and get discovered by great companies. The wider platform also spans a company-facing web app and a control dashboard.",
+      "ISiRA is a hiring platform that connects candidates with companies. It serves two sides: a candidate mobile app whose hook is voice, and a company dashboard and app for finding and unlocking talent. Instead of filling endless forms, you record a 30–60 second voice intro and the app builds your profile automatically from what you say. You confirm the details across a few quick steps, add your CV and documents, then publish and get discovered by great companies. On the company side, hiring teams filter the talent pool with a live candidate count, see a masked preview of matches, buy a bundle and unlock the profiles they want — then contact, export and hire. Candidates choose when to become discoverable, through a clear consent step.",
     problem:
       "Job-seeking starts with the most tedious step imaginable — retyping your whole life into forms, on a phone. Candidates drop off before they are ever seen, and the profiles that do get built come out thin and generic. The challenge was to make building a rich, human profile feel effortless — and to make candidates feel like people, not rows in a database.",
     solution:
-      "A voice-first onboarding. You talk for under a minute; the app transcribes and structures a full profile — who you are, your experience, skills and preferences — which you simply confirm and refine. Documents and a review-and-publish step round it out. A calm, confident green system with big targets and clear progress keeps the whole flow feeling quick and human.",
+      "A voice-first onboarding. You talk for under a minute; the app transcribes and structures a full profile — who you are, your experience, skills and preferences — which you simply confirm and refine. Documents and a review-and-publish step round it out. A calm, confident green system with big targets and clear progress keeps the whole flow feeling quick and human. For companies, one loop — filter, live count, buy, contact — runs through a web dashboard and a mobile app, with names and contacts hidden until purchase.",
     process: [
       "Mapped the candidate journey — from first open to a published, discoverable profile",
       "Designed the signature voice-first builder (record → AI-built profile → confirm)",
       "Broke profile-building into short confirm steps — personal, background, skills, preferences",
       "Documents, review-and-publish, and the finished profile home",
+      "Company side: sign-up, recommended bundle, search with live count, purchases and export — on web and mobile",
       "High-fidelity UI on a reusable mobile design system (8pt grid, UI kit)",
       "Handoff with components, tokens and screen notes",
     ],
@@ -626,7 +627,7 @@ export const projects: Project[] = [
       fg: "#EEF3EA",
       accent: "#9DBE93",
       image: "/projects/hiring-platform/cover.jpg",
-      imageAspect: "16 / 9",
+      imageAspect: "1600 / 1126",
     },
     mockups: [
       { label: "Splash", type: "phone", image: "/projects/hiring-platform/splash.jpg" },
@@ -638,11 +639,17 @@ export const projects: Project[] = [
       { label: "Documents", type: "phone", image: "/projects/hiring-platform/documents.jpg" },
       { label: "Review & publish", type: "phone", image: "/projects/hiring-platform/review-publish.jpg" },
       { label: "Profile home", type: "phone", image: "/projects/hiring-platform/profile-home.jpg" },
+      { label: "Company app — search", type: "phone", image: "/projects/hiring-platform/c-search.jpg" },
+      { label: "Company app — masked results", type: "phone", image: "/projects/hiring-platform/c-results.jpg" },
+      { label: "Company app — candidate profile", type: "phone", image: "/projects/hiring-platform/c-candidate.jpg" },
+      { label: "Company dashboard — overview", type: "browser", image: "/projects/hiring-platform/db-overview.jpg", aspect: "1117 / 795" },
+      { label: "Company dashboard — search & live count", type: "browser", image: "/projects/hiring-platform/db-search.jpg", aspect: "1117 / 795" },
+      { label: "Company dashboard — purchased candidates", type: "browser", image: "/projects/hiring-platform/db-purchased.jpg", aspect: "1117 / 795" },
       {
-        label: "+ 5 more screens",
+        label: "+ 30 more screens",
         type: "phone",
         image: "/projects/hiring-platform/profile-home.jpg",
-        moreCount: 5,
+        moreCount: 30,
       },
     ],
   },
