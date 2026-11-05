@@ -646,6 +646,96 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "mtn-payment",
+    n: "09",
+    name: "mtnPayment & MTN Wallet",
+    client: "MTN Institute — Roma MPH",
+    sector: "Fintech · Payments & Wallet",
+    year: "2024 — 2025",
+    status: "live",
+    services: [
+      "UX Research",
+      "Product Design",
+      "Web + Mobile",
+      "Arabic-first / RTL",
+    ],
+    tagline: "One secure checkout — pay in full, by transfer or in installments.",
+    overview:
+      "mtnPayment is the payment layer behind MTN's learning and wellness platforms. It takes a client from their cart to a confirmed payment in four steps — in Arabic or English, on desktop or mobile — whether they pay in full, by bank transfer or in installments. After the checkout, we released MTN Wallet: a separate service added to every system and linked to the payment solution, where learners top up once, pay for courses and installments from their balance, and always see what they owe.",
+    problem:
+      "Installment terms and bank details were explained over chat, which felt unsafe and slow for clients. Sales received receipts in different channels with no single status to check, and accounting tracked installment schedules by hand — so missed payments were easy to miss. A payment touches three people, and each one saw a different problem.",
+    solution:
+      "A four-step checkout — cart, details, payment, confirmation — with a plan picker that shows the monthly amount on every option, bank details and receipt upload on the same screen, and fees shown before the pay button. Every payment enters an approval workflow with a clear status for sales and accounting. MTN Wallet builds on it: balance and debt side by side, top-up by card (Stripe) or bank transfer, overdue installments highlighted with their pay button, and a debt alert that explains why without blocking access to courses.",
+    process: [
+      "Stakeholder sessions to align on the payment options the business supports and what sales and accounting need to approve",
+      "Mapped the journey for clients, sales and accounting; reviewed how local payment providers present transfers and installments",
+      "User flows for the four-step checkout and the approval workflow",
+      "Wireframes → high-fidelity UI on the shared Roma MPH design system",
+      "Full Arabic RTL version of every screen, plus a mobile layout with the summary first",
+      "Extended the checkout into MTN Wallet — balance, debt, top-up and transaction history",
+    ],
+    outcomes: [
+      "One tracked payment flow",
+      "Installments made clear",
+      "Arabic RTL + mobile",
+      "Grew into MTN Wallet",
+    ],
+    liveLinks: [
+      { label: "mtnpayment.com", href: "https://www.mtnpayment.com/en" },
+      { label: "mtninstitute.net", href: "https://mtninstitute.net/ar" },
+    ],
+    hero: {
+      bg: "#0F2A1C",
+      fg: "#EAF6EF",
+      accent: "#2BC275",
+      image: "/projects/mtn-payment/cover.jpg",
+      imageAspect: "16 / 9",
+    },
+    mockups: [
+      {
+        label: "Checkout — Arabic RTL",
+        type: "browser",
+        image: "/projects/mtn-payment/checkout-ar.jpg",
+        aspect: "1436 / 930",
+      },
+      {
+        label: "Bank transfer & receipt upload",
+        type: "browser",
+        image: "/projects/mtn-payment/transfer.jpg",
+        aspect: "1128 / 908",
+      },
+      {
+        label: "Installment plan",
+        type: "browser",
+        image: "/projects/mtn-payment/installments.jpg",
+        aspect: "1128 / 900",
+      },
+      {
+        label: "Mobile — choose a plan",
+        type: "phone",
+        image: "/projects/mtn-payment/mobile-plan.jpg",
+      },
+      {
+        label: "MTN Wallet — dashboard",
+        type: "browser",
+        image: "/projects/mtn-payment/wallet.jpg",
+        aspect: "2328 / 1352",
+      },
+      {
+        label: "Wallet — top up",
+        type: "browser",
+        image: "/projects/mtn-payment/top-up.jpg",
+        aspect: "1128 / 1008",
+      },
+      {
+        label: "Wallet — debt alert",
+        type: "browser",
+        image: "/projects/mtn-payment/debt-alert.jpg",
+        aspect: "1128 / 1008",
+      },
+    ],
+  },
 ];
 
 export function getProject(slug: string) {
